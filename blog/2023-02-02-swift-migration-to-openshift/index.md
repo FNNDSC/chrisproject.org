@@ -111,31 +111,42 @@ endpoint = localhost:4443
 
 ## Doing the Copy
 
+![Screenshot](./screenshot.png)
+
 In one `tmux` pane I'm running
 
 ```shell
 while sleep 1; do oc port-forward rinetd-nooba 4443:4443; done
 ```
 
-and in the other, I have
+<details>
+<summary>
+
+The `while` loop is necessary because there are occasional errors (click to expand):
+
+</summary>
+
+```
+E0902 01:05:36.753216 4115978 portforward.go:406] an error occurred forwarding 4443 -> 4443: error forwarding port 4443 to pod ca29cf8c44fe9d46fad7b64b17fe01adc36821919c5c5a91f8cd1f4c6cc96671, uid : port forward into network namespace "/var/run/netns/48bfdb2f-a9f9-4a8c-8d10-1f0ef1be9863": readfrom tcp 127.0.0.1:41408->127.0.0.1:4443: write tcp 127.0.0.1:41408->127.0.0.1:4443: write: broken pipe                                                     
+E0902 01:05:36.754603 4115978 portforward.go:234] lost connection to pod
+```
+
+</details>
+
+In another `tmux` pane, I have
 
 ```shell
-rclone copy --progress --no-check-certificate swift:users fw-rinetd-nooba:cube-files-938a843c-3bef-4724-90d5-4e85ac3e30c4
+until rclone sync --progress --no-check-certificate swift:users fw-rinetd-nooba:cube-files-938a843c-3bef-4724-90d5-4e85ac3e30c4; do sleep 10; done
 ```
+
+As aforementioned, the networking from this VM to the bucket endpoint inside OpenShift is fallible
+so the `until` loop and `rclone sync` are used to retry until all data are copied and verified.
 
 `cube-files-938a843c-3bef-4724-90d5-4e85ac3e30c4` is the auto-generated bucket name,
 obtained from the ConfigMap `cube-files`.
-
-![Screenshot](./screenshot.png)
 
 :::note
 
 `--no-check-certificates` is necessary because the bucket endpoint uses a self-signed certificate.
 
 :::
-
-There were errors and disruptions to `oc port-forward`. So we do a second pass with `rclone sync`:
-
-```shell
-rclone sync --progress --no-check-certificate swift:users fw-rinetd-nooba:cube-files-938a843c-3bef-4724-90d5-4e85ac3e30c4
-```
