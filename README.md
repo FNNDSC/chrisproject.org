@@ -1,5 +1,8 @@
 # Website2
 
+[![MIT License](https://img.shields.io/github/license/fnndsc/website2)](/LICENSE)
+[![CI](https://github.com/FNNDSC/website2/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/website2/actions/workflows/ci.yml)
+
 A humble start. A dim hope to replace the current
 [chrisproject.org Jekyll website](https://github.com/FNNDSC/website/tree/223a2146546ec74ebdde4245cb9fd069c36ea5d7).
 
