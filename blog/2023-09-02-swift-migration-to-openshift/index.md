@@ -1,7 +1,7 @@
 ---
 title: Migration of data from a OpenStack Swift on a VM to NooBaa on OpenShift
 authors: jennings
-tags: [OpenShift, backend]
+tags: [OpenShift, backend, NERC]
 ---
 
 Currently, https://cube.chrisproject.org is being powered by a VM called `fnndsc.childrens.harvard.edu`
@@ -23,8 +23,9 @@ In the process of doing that, I realized that it wouldn't work without modifying
 CUBE only supports [Swift auth "v1"](https://docs.openstack.org/python-swiftclient/2023.1/swiftclient.html#module-swiftclient.authv1)
 while NERC OpenStack must use "v3" given `storage_url` and `auth_token`.
 
-Would it be that much more effort to go the extra mile and implement S3 support in CUBE,
-paving the way to a 100% OpenShift architecture? Well yes... ok.
+To support `storage_url` and `auth_token` would take maybe 5 lines of code in CUBE.
+But, would it be that much more effort to go the extra mile and implement S3 support in CUBE,
+paving the way to a 100% OpenShift architecture? Well yes, 10,000% more effort, but whatever.
 
 ## Buckets in OpenShift
 
@@ -150,3 +151,9 @@ obtained from the ConfigMap `cube-files`.
 `--no-check-certificates` is necessary because the bucket endpoint uses a self-signed certificate.
 
 :::
+
+It was working, until it wasn't. I eventually started receiving 500 errors
+
+> InternalError: We encountered an internal error. Please try again.
+
+This is a problem with the NERC and I'll have to wait to hear back from the help desk.
