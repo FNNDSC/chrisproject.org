@@ -1,24 +1,11 @@
-endi:
-  name: Endilie Yacop Sucipto
-  title: Maintainer of Docusaurus
-  url: https://github.com/endiliey
-  image_url: https://github.com/endiliey.png
-
-yangshun:
-  name: Yangshun Tay
-  title: Front End Engineer @ Facebook
-  url: https://github.com/yangshun
-  image_url: https://github.com/yangshun.png
-
-slorber:
-  name: Sébastien Lorber
-  title: Docusaurus maintainer
-  url: https://sebastienlorber.com
-  image_url: https://github.com/slorber.png
-
+mo:
+  name: Máirín Duffy
+  title: UX Designer @ Red Hat
+  url: https://www.bu.edu/rhcollab/people/mairin-duffy/
+  image_url: /img/team/mairinduffy.jpg
 
 jennings:
   name: Jennings Zhang
-  title: Developer II, Research Software
+  title: Research Software Developer @ Boston Children's Hospital
   url: https://jennydaman.gitlab.io
   image_url: /img/team/jennings.jpg
