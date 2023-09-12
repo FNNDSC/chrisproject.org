@@ -147,6 +147,27 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      // https://docusaurus.io/docs/search#connecting-algolia
+      algolia: {
+        // The application ID provided by Algolia
+        appId: '8Z9P3S4SYP',
+
+        // Public API key: it is safe to commit it
+        apiKey: '1ba826758178295a8f8409f85cea55d3',
+
+        indexName: 'web2-chrisproject',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: Algolia search parameters
+        searchParameters: {},
+
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: 'search',
+
+        //... other Algolia params
+      }
     }),
 };
 
