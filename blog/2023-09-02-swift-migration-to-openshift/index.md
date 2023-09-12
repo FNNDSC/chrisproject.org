@@ -7,8 +7,10 @@ tags: [OpenShift, backend, NERC]
 Currently, https://cube.chrisproject.org is being powered by a VM called `fnndsc.childrens.harvard.edu`
 in the Boston Children Hospital network's DMZ. It's been working well for us through
 the years, however its 480GB disk frequently runs out of space. For more
-storage, easier deployments, and stability, we want to migrate this instance
+storage, easier deployments, and stability, we want to try migrating this instance
 of the _ChRIS_ backend to the [NERC](https://nerc.mghpcc.org)'s OpenShift cluster.
+
+<!--truncate-->
 
 The data for CUBE are currently stored on the VM by an OpenStack Swift container using
 [docker-swift-onlyone](https://github.com/FNNDSC/docker-swift-onlyone), which writes

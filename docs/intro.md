@@ -2,46 +2,59 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+_ChRIS_ is a **container** platform for medical research and compute.
+
 
 ## Getting Started
 
-Get started by **creating a new site**.
+_ChRIS_ is for everyone!
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 16.14 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
-
-```bash
-npm init docusaurus@latest my-website classic
-```
-
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
-
-The command also installs all necessary dependencies you need to run Docusaurus.
-
-## Start your site
-
-Run the development server:
-
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+<div class="container container-of-same-height-cards">
+  <div class="row">
+    <div class="col col--4">
+      <div class="card">
+        <div class="card__header">
+          <h3>For Users</h3>
+        </div>
+        <div class="card__body">
+          <p>
+            Analyze data using open-source software and reproducible workflows
+            on our free, public <em>ChRIS</em> instance.
+          </p>
+          <p>
+            <a href="https://app.chrisproject.org">https://app.chrisproject.org</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col col--4">
+      <div class="card">
+        <div class="card__header">
+          <h3>For Developers</h3>
+        </div>
+        <div class="card__body">
+          <p>
+            Run, scale, and share your software on <em>ChRIS</em> by writing a <em>ChRIS plugin</em>.
+            Use our <a href="https://github.com/FNNDSC/python-chrisapp-template">template repository</a> to
+            fast-track your way to the cloud.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col col--4">
+      <div class="card">
+        <div class="card__header">
+          <h3>For Contributors</h3>
+        </div>
+        <div class="card__body">
+          <p>
+            Get familiar with our project and code base by reading the{" "}
+            <a href="guide">contributor's guide</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

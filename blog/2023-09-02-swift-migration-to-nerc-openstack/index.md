@@ -7,7 +7,9 @@ tags: [backend, NERC]
 Currently, https://cube.chrisproject.org is being powered by a VM called `fnndsc.childrens.harvard.edu`
 in the Boston Children Hospital network's DMZ. It's been working well for us through
 the years, however its 480GB disk frequently runs out of space. For more
-storage, we are going to migrate the data into [NERC](https://nerc.mghpcc.org) OpenStack Swift object storage.
+storage, we want to try migrating the data into [NERC](https://nerc.mghpcc.org) OpenStack Swift object storage.
+
+<!--truncate-->
 
 Ideally, we would rather use OpenShift NooBaa container object storage. Going 100% OpenShift is
 still on our roadmap, but at this time the NERC OpenShift cluster is having problems. In the

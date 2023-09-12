@@ -43,3 +43,9 @@ h5,
 h6 {
   font-family: Overpass, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+
+
+.container-of-same-height-cards .card {
+  height: 100%;
+}
