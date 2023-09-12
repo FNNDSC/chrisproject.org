@@ -1,5 +1,5 @@
 import React from "react";
-import styles from './styles.module.css';
+import styles from "./styles.module.css";
 
 /**
  * Provides a video background.
@@ -9,13 +9,23 @@ export default function VideoJumbotron({ children, ...props }) {
     <div className="container">
       <div {...props}>
         <video
-          playsInline loop muted
+          playsInline
+          loop
+          muted
           className={styles.jumboVideo}
-          onCanPlay={e => { // noinspection JSIgnoredPromiseFromCall
-            e.currentTarget.play()}}
+          onCanPlay={(e) => {
+            // noinspection JSIgnoredPromiseFromCall
+            e.currentTarget.play();
+          }}
         >
-          <source src={require('@site/static/video/jumbo-vid.mp4').default} type="video/mp4" />
-          <source src={require('@site/static/video/jumbo-vid.webm').default} type="video/webm" />
+          <source
+            src={require("@site/static/video/jumbo-vid.mp4").default}
+            type="video/mp4"
+          />
+          <source
+            src={require("@site/static/video/jumbo-vid.webm").default}
+            type="video/webm"
+          />
           Your browser doesn't support the video element.
         </video>
         <div className={styles.jumboVideoShade} />
@@ -25,11 +35,9 @@ export default function VideoJumbotron({ children, ...props }) {
           <div className="col col--4"></div>
           <div className="col col--1"></div>
 
-          <div className={`col col--6 ${styles.jumboContent}`}>
-            {children}
-          </div>
+          <div className={`col col--6 ${styles.jumboContent}`}>{children}</div>
         </div>
       </div>
     </div>
-  )
+  );
 }
