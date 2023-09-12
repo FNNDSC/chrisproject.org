@@ -1,6 +1,6 @@
 ---
 title: Docusaurus Introduction
-authors: Jennings
+authors: jennings
 tags: [webdev]
 ---
 
