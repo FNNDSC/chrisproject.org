@@ -1,13 +1,13 @@
-import React from "react";
-import clsx from "clsx";
 import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import Layout from "@theme/Layout";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
+import Layout from "@theme/Layout";
+import clsx from "clsx";
+import React from "react";
 
-import styles from "./index.module.css";
-import "./fixme.css";
 import VideoJumbotron from "@site/src/components/VideoJumbotron";
+import "./fixme.css";
+import styles from "./index.module.css";
 
 function HomepageHeader() {
   return (
@@ -24,12 +24,18 @@ function HomepageHeader() {
         </p>
         <div className={styles.buttons}>
           <a href="https://app.chrisproject.org" rel="noopener noreferrer">
-            <button className="button button--secondary button--lg">
+            <button
+              type="button"
+              className="button button--secondary button--lg"
+            >
               View a demo
             </button>
           </a>
-          <Link to="#get-started">
-            <button className="button button--secondary button--outline button--lg fix-on-dark-bg">
+          <Link to="/docs/intro#getting-started">
+            <button
+              type="button"
+              className="button button--secondary button--outline button--lg fix-on-dark-bg"
+            >
               Get Started
             </button>
           </Link>

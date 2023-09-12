@@ -32,8 +32,8 @@ export default function VideoJumbotron({ children, ...props }) {
 
         <div className="row">
           {/* Adds space to the left for desktop layouts, no space on mobile */}
-          <div className="col col--4"></div>
-          <div className="col col--1"></div>
+          <div className="col col--4" />
+          <div className="col col--1" />
 
           <div className={`col col--6 ${styles.jumboContent}`}>{children}</div>
         </div>
