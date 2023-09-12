@@ -4,6 +4,9 @@
  * work well for content-centric websites.
  */
 
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600;700&display=swap');
+
+
 /* You can override the default Infima variables here. */
 
 /* Blue theme from https://www.patternfly.org/design-foundations/colors#color-palette */
@@ -29,4 +32,14 @@
   --ifm-color-primary-lighter: #BEE1F4;
   --ifm-color-primary-lightest: #E7F1FA;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Overpass, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }

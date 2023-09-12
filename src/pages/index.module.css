@@ -5,9 +5,13 @@
 
 .heroBanner {
   padding: 4rem 0;
-  text-align: center;
   position: relative;
   overflow: hidden;
+  color: white;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 300;
 }
 
 @media screen and (max-width: 996px) {
@@ -18,6 +22,12 @@
 
 .buttons {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 0.5em;
+  font-weight: 3000;
+}
+
+
+.jumbotron {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
