@@ -39,11 +39,23 @@ function HomepageHeader() {
   );
 }
 
-function GetStarted() {
+function WipNotice() {
   return (
     <div id="get-started">
       <div className="container">
-        <h1>Getting Started</h1>
+        <div style={{ textAlign: "center" }}>
+          <h1>🚧 Website under construction 🚧</h1>
+          <p>
+            In the meantime, please visit{" "}
+            <a href="https://chrisproject.org">https://chrisproject.org</a>
+            for information about <em>ChRIS</em>.
+            <br />
+            You can help me build this website:{" "}
+            <a href="https://github.com/FNNDSC/website2">
+              https://github.com/FNNDSC/website2
+            </a>
+          </p>
+        </div>
       </div>
     </div>
   );
@@ -59,7 +71,7 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
-        <GetStarted />
+        <WipNotice />
       </main>
     </Layout>
   );

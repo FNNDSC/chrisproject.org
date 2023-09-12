@@ -127,11 +127,11 @@ const config = {
             title: 'Organizations',
             items: [
               {
-                label: 'Fetal-Neonatal Neuroimaging Developmental Science Center',
+                label: 'Fetal-Neonatal Neuroimaging Developmental Science Center (FNNDSC)',
                 to: 'https://fnndsc.org'
               },
               {
-                label: 'New England Research Cloud',
+                label: 'New England Research Cloud (NERC)',
                 to: 'https://nerc.mghpcc.org/'
               },
               {
