@@ -5,10 +5,25 @@
 
 _ChRIS_ project landing page and documentation website.
 
-This is a humble WIP. It will one day replace the current
-Jekyll-based website, which is available at https://chrisproject.org
+## Contributing
 
-## Local Development
+The source code of this repository is built automatically by
+[GitHub Actions](https://github.com/FNNDSC/chrisproject.org/actions)
+and deployed to GitHub Pages.
+
+Most pages are just Markdown files, so it should be easy enough to contribute.
+
+Suggested reading on how to create blog posts: https://docusaurus.io/docs/blog
+
+### Editing Pages on GitHub.com
+
+Markdown pages can be edited by clicking "Edit this page" on the page
+itself, then "Edit this file" on GitHub.com.
+
+When creating a new page on GitHub.com, be sure to follow the
+[naming conventions](#naming-conventions).
+
+### Local Development
 
 Install [pnpm](https://pnpm.io/installation), then run
 
@@ -38,7 +53,7 @@ pnpm run fix
 pnpm run fix:unsafe
 ```
 
-## Pages Organization
+### Pages Organization
 
 This table guides you on where to put your documentation.
 
@@ -51,7 +66,7 @@ This table guides you on where to put your documentation.
 | `meeting_minutes` | Meeting Minutes        | Low quality notes about meetings and progress updates.                                             |
 | `ChRISalis`       | ChRISalis              | Blog for the _ChRIS_ learning seminar. Contains links, slides, and meeting recordings.             |
 
-## Static Assets
+### Static Assets
 
 Small images and other media can be uploaded to Git in the `static/` directory.
 Optionally, large assets such as PDFs, PPTX, ... can be hosted on
