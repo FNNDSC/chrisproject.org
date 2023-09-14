@@ -34,6 +34,32 @@ const config = {
     locales: ['en'],
   },
 
+  // We have 2 blogs:
+  // - Engineering Blog: high-ish quality write-ups about technical challenges solutions
+  //                     (Default blog, configuration not shown below)
+  // - Meeting Minutes:  low-ish quality notes about internal meetings
+  // - ChRISalis:        The ChRIS Learning Colloquia by Jennings
+  //
+  // Documentation: https://docusaurus.io/docs/blog#multiple-blogs
+  plugins: [
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'meeting_minutes',
+        routeBasePath: 'meeting_minutes',
+        path: './meeting_minutes',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'ChRISalis',
+        routeBasePath: 'ChRISalis',
+        path: './ChRISalis',
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
@@ -73,7 +99,9 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          {to: '/blog', label: 'Engineering Blog', position: 'left'},
+          {to: '/meeting_minutes', label: 'Meeting Minutes', position: 'left'},
+          {to: '/ChRISalis', label: 'ChRISalis', position: 'left'},
           {
             href: 'https://github.com/FNNDSC',
             label: 'GitHub',
@@ -84,15 +112,15 @@ const config = {
       footer: {
         style: 'dark',
         links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Tutorial',
-                to: '/docs/intro',
-              },
-            ],
-          },
+          // {
+          //   title: 'Docs',
+          //   items: [
+          //     {
+          //       label: 'Introduction',
+          //       to: '/docs/intro',
+          //     },
+          //   ],
+          // },
           // {
           //   title: 'Community',
           //   items: [
@@ -111,24 +139,15 @@ const config = {
           //   ],
           // },
           {
-            title: 'More',
-            items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
-                label: 'GitHub',
-                href: 'https://github.com/FNNDSC',
-              },
-            ],
-          },
-          {
             title: 'Organizations',
             items: [
               {
                 label: 'Fetal-Neonatal Neuroimaging Developmental Science Center (FNNDSC)',
                 to: 'https://fnndsc.org'
+              },
+              {
+                label: "Boston Children's Hospital",
+                to: 'https://www.childrenshospital.org/research'
               },
               {
                 label: 'New England Research Cloud (NERC)',
@@ -138,6 +157,23 @@ const config = {
                 label: 'Red Hat',
                 to: 'https://redhat.com'
               }
+            ]
+          },
+          {
+            title: 'Get In Touch',
+            items: [
+              {
+                label: 'Matrix Chat',
+                to: 'https://matrix.to/#/#chris:fedora.im'
+              },
+              {
+                label: 'Github',
+                to: 'https://github.com/FNNDSC'
+              },
+              {
+                label: 'Email (dev@babyMRI.org)',
+                to: 'email:dev@babyMRI.org'
+              },
             ]
           }
         ],
