@@ -1,4 +1,4 @@
-# Website2
+# chrisproject.org Website
 
 [![MIT License](https://img.shields.io/github/license/fnndsc/website2)](/LICENSE)
 [![CI](https://github.com/FNNDSC/website2/actions/workflows/ci.yml/badge.svg)](https://github.com/FNNDSC/website2/actions/workflows/ci.yml)
@@ -49,7 +49,7 @@ pnpm run fmt
 # automatically fix some issues
 pnpm run fix
 
-# automatically fix more issues, but with !danger!
+# automatically fix more issues, but with ¡danger!
 pnpm run fix:unsafe
 ```
 
