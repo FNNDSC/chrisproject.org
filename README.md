@@ -21,7 +21,7 @@ Markdown pages can be edited by clicking "Edit this page" on the page
 itself, then "Edit this file" on GitHub.com.
 
 When creating a new page on GitHub.com, be sure to follow the
-[naming conventions](#naming-conventions).
+[naming conventions](https://docusaurus.io/docs/blog#blog-post-date).
 
 ### Local Development
 
