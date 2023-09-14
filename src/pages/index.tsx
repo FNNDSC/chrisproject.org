@@ -53,12 +53,14 @@ function WipNotice() {
           <h1>🚧 Website under construction 🚧</h1>
           <p>
             In the meantime, please visit{" "}
-            <a href="https://chrisproject.org">https://chrisproject.org</a>
+            <a href="http://old-website.chrisproject.org/">
+              http://old-website.chrisproject.org/
+            </a>
             for information about <em>ChRIS</em>.
             <br />
             You can help me build this website:{" "}
-            <a href="https://github.com/FNNDSC/website2">
-              https://github.com/FNNDSC/website2
+            <a href="https://github.com/FNNDSC/chrisproject.org">
+              https://github.com/FNNDSC/chrisproject.org
             </a>
           </p>
         </div>

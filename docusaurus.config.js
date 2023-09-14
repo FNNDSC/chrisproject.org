@@ -11,7 +11,7 @@ const config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://web2.chrisproject.org',
+  url: 'https://chrisproject.org',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -19,7 +19,7 @@ const config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: 'FNNDSC', // Usually your GitHub org/user name.
-  projectName: 'website2', // Usually your repo name.
+  projectName: 'chrisproject.org', // Usually your repo name.
   trailingSlash: false,
   deploymentBranch: 'gh-pages',
 
