@@ -49,3 +49,9 @@ h6 {
 .container-of-same-height-cards .card {
   height: 100%;
 }
+
+/* https://docusaurus.io/docs/markdown-features/assets#github-style-themed-images */
+[data-theme='light'] img[src$='#gh-dark-mode-only'],
+[data-theme='dark'] img[src$='#gh-light-mode-only'] {
+  display: none;
+}
