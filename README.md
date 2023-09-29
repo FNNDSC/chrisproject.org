@@ -57,14 +57,14 @@ pnpm run fix:unsafe
 
 This table guides you on where to put your documentation.
 
-| Directory         | Name                   | Description                                                                                        |
-|-------------------|------------------------|----------------------------------------------------------------------------------------------------|
-| `src/pages/`      | (none)                 | Landing page and other high-visibility pages.                                                      |
-| `docs/`           | Documentation          | High quality documentation intended for the public.                                                |
-| `docs/internal`   | Internal Documentation | Notes and low quality documentation which are relevant only to the _ChRIS_ core development group. |
-| `blog/`           | Engineering Blog       | High quality write-ups about milestones or technical challenges and solutions.                     |
-| `meeting_minutes` | Meeting Minutes        | Low quality notes about meetings and progress updates.                                             |
-| `ChRISalis`       | ChRISalis              | Blog for the _ChRIS_ learning seminar. Contains links, slides, and meeting recordings.             |
+| Directory          | Name                   | Description                                                                                        |
+|--------------------|------------------------|----------------------------------------------------------------------------------------------------|
+| `src/pages/`       | (none)                 | Landing page and other high-visibility pages.                                                      |
+| `docs/`            | Documentation          | High quality documentation intended for the public.                                                |
+| `docs/internal/`   | Internal Documentation | Notes and low quality documentation which are relevant only to the _ChRIS_ core development group. |
+| `blog/`            | Engineering Blog       | High quality write-ups about milestones or technical challenges and solutions.                     |
+| `meeting_minutes/` | Meeting Minutes        | Low quality notes about meetings and progress updates.                                             |
+| `ChRISalis/`       | ChRISalis              | Blog for the _ChRIS_ learning seminar. Contains links, slides, and meeting recordings.             |
 
 ### Static Assets
 
