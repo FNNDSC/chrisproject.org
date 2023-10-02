@@ -108,7 +108,7 @@ helm upgrade --install --reuse-values \
 If it is necessary to reset this superuser's password, simply restart the server.
 
 ```shell
-kubectl rollout restart deployment chris-server
+kubectl rollout restart deployment chris-chris-server
 ```
 
 ### _ChRISomatic_
