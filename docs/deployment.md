@@ -44,16 +44,26 @@ the latest versions of the packages. You can then run `helm search repo fnndsc` 
 To install the `chris` chart, obtain a copy of `values.yaml` and modify it to suit your needs.
 
 ```shell
-helm show values fnndsc/chris > values.yaml 
+helm show values fnndsc/chris > values.yaml
 ```
 
-When you're ready, install it:
+When you're ready, install it.
+
+:::tip
+
+The command `helm upgrade --install --create-namespace ...` is a combination of the commands
+`kubectl create namespace ...`, `helm install`, and `helm upgrade`. It:
+
+1. Creates the namespace if it does not already exist.
+2. If this is the first time running the command, install the chart, otherwise upgrade it.
+
+:::
+
+To install `chris` with a configuration values file called `values.yaml`:
 
 ```shell
-helm upgrade --install --create-namespace --namespace chris chris-prod fnndsc/chris
+helm upgrade --install --create-namespace --namespace chris --values values.yaml chris-prod fnndsc/chris
 ```
-
-The command above will create a release of the _ChRIS_ backend called `chris-prod`.
 
 To uninstall the chart:
 
@@ -61,7 +71,15 @@ To uninstall the chart:
 helm delete --namespace chris chris-prod
 ```
 
+Finally, to nuke everything:
+
+```shell
+kubectl delete namespace chris
+```
+
 ## Special Cases
+
+Here are some common situations where the default values will not work.
 
 ### NFS Server Workarounds
 
@@ -92,17 +110,28 @@ The `chris` chart gives you:
 
 ## Tips and Tricks
 
+### Use NodePort
+
+If Kubelet is running on your host (whether your host is part of the cluster, or you're running
+Kubernetes on your host for locatl development using something like [KinD](https://kind.sigs.k8s.io/))
+you can configure `chris` to use `NodePort` as a convenient ingress solution.
+
+```shell
+helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
+     --set cube.ingress.nodePort=32000 \
+     --set cube.ingress.nodePortHost=$(hostname)
+```
+
 ### Superuser Creation
 
 A [superuser](./glossary.md#Superuser) is created automatically for system use.
 Its password can be specified as a value, for example
 
 ```shell
-helm upgrade --install --reuse-values \
+helm upgrade --install --reuse-values chris fnndsc/chris \
      --set chris_admin.username=christopher \
      --set chris_admin.email=christopher@example.org \
-     --set chris_admin.password=H4RD2GUE2234 \
-     chris fnndsc/chris
+     --set chris_admin.password=H4RD2GUE2234
 ```
 
 If it is necessary to reset this superuser's password, simply restart the server.
