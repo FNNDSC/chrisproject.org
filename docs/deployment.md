@@ -72,3 +72,45 @@ may require that all (stateful) containers run as a user with a specific UID. Th
 
 The `bitnami/postgresql` subchart requires specific security configurations for OpenShift.
 See https://github.com/bitnami/charts/tree/main/bitnami/postgresql#differences-between-bitnami-postgresql-image-and-docker-official-image
+
+## What's Included?
+
+The `chris` chart gives you:
+
+- The [_ChRIS_ backend server](https://github.com/FNNDSC/ChRIS_ultron_backEnd)
+- [pfcon](https://github.com/FNNDSC/pfcon), a compute provider for the _ChRIS_ backend
+- [pfdcm](https://github.com/FNNDSC/pfdcm), a PACS to _ChRIS_ connector
+- [pypx-DICOMweb](https://github.com/FNNDSC/pypx-rs/tree/master/pypx-DICOMweb), an API (compatible with [OHIF](https://ohif.org/) to browse DICOM data retrieved by _pfdcm_
+- A `NodePort` for ingress
+
+### What's not included?
+
+- Front-ends: please install [ChRIS_ui](https://github.com/FNNDSC/ChRIS_ui)
+- Plugins: browse our catalog and install them from <https://app.chrisproject.org/catalog>
+- :warning: Database backups :warning:
+- High-availability (HA), autoscaling
+
+## Tips and Tricks
+
+### Superuser Creation
+
+A [superuser](./glossary.md#Superuser) is created automatically for system use.
+Its password can be specified as a value, for example
+
+```shell
+helm upgrade --install --reuse-values \
+     --set chris_admin.username=christopher \
+     --set chris_admin.email=christopher@example.org \
+     --set chris_admin.password=H4RD2GUE2234 \
+     chris fnndsc/chris
+```
+
+If it is necessary to reset this superuser's password, simply restart the server.
+
+```shell
+kubectl rollout restart deployment chris-server
+```
+
+### _ChRISomatic_
+
+TODO
