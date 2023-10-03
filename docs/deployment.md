@@ -134,10 +134,10 @@ helm upgrade --install --reuse-values chris fnndsc/chris \
      --set chris_admin.password=H4RD2GUE2234
 ```
 
-If it is necessary to reset this superuser's password, simply restart the server.
+If it is necessary to reset this superuser's password, simply restart the "heart" deployment.
 
 ```shell
-kubectl rollout restart deployment -l app.kubernetes.io/name=chris-server
+kubectl rollout restart deployment -l app.kubernetes.io/name=chris-heart
 ```
 
 ### _ChRISomatic_
