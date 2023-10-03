@@ -80,7 +80,7 @@ spec:
     - name: rinetd
       image: docker.io/vimagick/rinetd@sha256:b13986b635ac909ae9aa6ef12972fd7071c91fe538e985b26eee77ad248a6158
       ports:
-        - containerPort: 443
+        - containerPort: 4443
       volumeMounts:
         - name: config
           subPath: rinetd.conf
