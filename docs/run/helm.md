@@ -1,8 +1,9 @@
 ---
-title: "Deployment"
+title: "Helm (Kubernetes)"
+sidebar_position: 2
 ---
 
-# Deployment
+# ChRIS in Production using Helm
 
 In production, _ChRIS_ should be deployed on [Kubernetes](https://kubernetes.io)
 or [OpenShift](https://www.redhat.com/en/technologies/cloud-computing/openshift)
@@ -35,7 +36,7 @@ third-party repositories to create Kubernetes resources, such as services and de
 Once Helm has been set up correctly, add the repo as follows:
 
 ```shell
-helm repo add fnndsc https://fnndsc.github.io/charts
+helm.md repo add fnndsc https://fnndsc.github.io/charts
 ```
 
 If you had already added this repo earlier, run `helm repo update` to retrieve
@@ -44,7 +45,7 @@ the latest versions of the packages. You can then run `helm search repo fnndsc` 
 To install the `chris` chart, obtain a copy of `values.yaml` and modify it to suit your needs.
 
 ```shell
-helm show values fnndsc/chris > values.yaml
+helm.md show values fnndsc/chris > values.yaml
 ```
 
 When you're ready, install it.
@@ -62,13 +63,13 @@ The command `helm upgrade --install --create-namespace ...` is a combination of 
 To install `chris` with a configuration values file called `values.yaml`:
 
 ```shell
-helm upgrade --install --create-namespace --namespace chris --values values.yaml chris-prod fnndsc/chris
+helm.md upgrade --install --create-namespace --namespace chris --values values.yaml chris-prod fnndsc/chris
 ```
 
 To uninstall the chart:
 
 ```shell
-helm delete --namespace chris chris-prod
+helm.md delete --namespace chris chris-prod
 ```
 
 Finally, to nuke everything:
@@ -117,18 +118,18 @@ Kubernetes on your host for locatl development using something like [KinD](https
 you can configure `chris` to use `NodePort` as a convenient ingress solution.
 
 ```shell
-helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
+helm.md upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
      --set cube.ingress.nodePort=32000 \
      --set cube.ingress.nodePortHost=$(hostname)
 ```
 
 ### Superuser Creation
 
-A [superuser](./glossary.md#Superuser) is created automatically for system use.
+A [superuser](../glossary.md#Superuser) is created automatically for system use.
 Its password can be specified as a value, for example
 
 ```shell
-helm upgrade --install --reuse-values chris fnndsc/chris \
+helm.md upgrade --install --reuse-values chris fnndsc/chris \
      --set chris_admin.username=christopher \
      --set chris_admin.email=christopher@example.org \
      --set chris_admin.password=H4RD2GUE2234
