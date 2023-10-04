@@ -28,6 +28,18 @@ sudo usermod --add-subuids 100000-165535 --add-subgids 100000-165535 $USER
 
 </details>
 
+:::warning
+
+Podman version 4.6.2 does not work due to a [bug](https://github.com/containers/podman/issues/19930).
+If `pman` is reporting the error
+
+> crun: write to `/proc/self/oom_score_adj`: Permission denied: OCI permission denied
+
+Try downgrading `crun` to version 1.8.7.
+(On Arch Linux, run `sudo pacman -U /var/cache/pacman/pkg/crun-1.8.7-1-x86_64.pkg.tar.zst`)
+
+:::
+
 ## Preconditions
 
 Make sure your system is not running anything which might interfere with _miniChRIS_.
