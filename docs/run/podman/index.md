@@ -51,6 +51,17 @@ cd miniChRIS-podman
 ./minichris.sh down
 ```
 
+## Podman: Nuke
+
+In case `./minichris.sh down` does not work, run:
+
+```shell
+podman pod rm -af
+podman volume prune -f
+```
+
+This might happen if you change the YAMLs.
+
 ## Using Podman Desktop
 
 It is necessary to feed to Podman Desktop a single YAML file defining all _ChRIS_ resources.
