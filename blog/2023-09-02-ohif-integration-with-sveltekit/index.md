@@ -8,6 +8,8 @@ tags: [frontend, ohif, svelte]
 
 In our existing frontend application, React was utilized to create a Single Page Application (SPA), where pages were loaded and rendered exclusively in the browser. However, our more recent user interface (UI) has been developed using SvelteKit, which harnesses its Server-Side Rendering (SSR) capabilities.
 
+<!--truncate-->
+
 Server-Side Rendering (SSR) is the process of rendering web pages on the server and subsequently transmitting the fully-rendered HTML to the client. In this approach, the server is responsible for generating the HTML, including any dynamic data, and it delivers the complete page to the client. Subsequently, the client displays the page without any further processing.
 
 There are several advantages to shifting the rendering workload, traditionally handled by the browser, to the server. However, my primary motivation for this migration can be summarized through the following three key factors:
