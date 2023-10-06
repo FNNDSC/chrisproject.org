@@ -116,3 +116,9 @@ initContainers:
         name: {{ .Release.Name }}-chris-superuser
         key: email
 ```
+
+## Worthy Mentions
+
+Other projects have other solutions to superuser creation. For example,
+[Authentik](https://github.com/goauthentik/authentik) lets the first person to
+visit the UI to create a superuser account.
