@@ -144,3 +144,7 @@ kubectl rollout restart deployment -l app.kubernetes.io/name=chris-heart
 ### _ChRISomatic_
 
 TODO
+
+## See Also
+
+Related blog post: [Django Superuser Creation using Helm](/blog/2023/10/06/django-superuser-helm)
