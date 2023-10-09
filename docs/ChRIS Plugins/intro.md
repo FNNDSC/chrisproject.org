@@ -26,7 +26,7 @@ writing outputs to a specified output directory.
 programname [--option value...] inputdir/ outputdir/
 ```
 
-For example, the _ds_ plugin https://github.com/FNNDSC/pl-infantfs[pl-infantfs]
+For example, the _ds_ plugin [pl-infantfs](https://github.com/FNNDSC/pl-infantfs)
 takes in a NIFTI file as input, and in its output directory it creates brain segmentation and surface files.
 
 ### _fs_-type Plugins
