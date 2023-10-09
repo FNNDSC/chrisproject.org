@@ -34,7 +34,7 @@ const config = {
     locales: ['en'],
   },
 
-  // We have 2 blogs:
+  // We have 3 blogs:
   // - Engineering Blog: high-ish quality write-ups about technical challenges solutions
   //                     (Default blog, configuration not shown below)
   // - Meeting Minutes:  low-ish quality notes about internal meetings
@@ -48,6 +48,7 @@ const config = {
         id: 'meeting_minutes',
         routeBasePath: 'meeting_minutes',
         path: './meeting_minutes',
+        blogTitle: 'Meeting Minutes'
       },
     ],
     [
@@ -56,6 +57,7 @@ const config = {
         id: 'ChRISalis',
         routeBasePath: 'ChRISalis',
         path: './ChRISalis',
+        blogTitle: 'ChRISalis Colloquium'
       },
     ],
   ],
