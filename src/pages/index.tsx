@@ -31,7 +31,7 @@ function HomepageHeader() {
               View a demo
             </button>
           </a>
-          <Link to="/docs/intro#getting-started">
+          <Link to="/docs#getting-started">
             <button
               type="button"
               className="button button--secondary button--outline button--lg fix-on-dark-bg"

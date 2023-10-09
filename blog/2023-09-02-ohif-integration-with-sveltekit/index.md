@@ -170,7 +170,7 @@ https://viewer.ohif.org/viewer/dicomjson?url=http://192.168.0.197/api/jsonfile/T
               "metadata": {
                 //...image metadata
               },
-              "url": "dicomweb:http://192.168.0.197/api/files/chris/uploads/Testing/0001-1.3.12.2.1107.5.2.32.35235.201112060752327594206283.dcm"
+              "url": "dicomweb:http://192.168.0.197/api.md/files/chris/uploads/Testing/0001-1.3.12.2.1107.5.2.32.35235.201112060752327594206283.dcm"
             }
             // ..... other instances metadata
           ]

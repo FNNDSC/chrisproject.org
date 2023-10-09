@@ -1,5 +1,6 @@
 ---
 title: "The ChRISalis Colloquia"
+sidebar_position: 97
 ---
 
 # _ChRISalis_: The _ChRIS_ Learning Colloquia

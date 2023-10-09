@@ -6,7 +6,7 @@ New England Research Cloud
 
 | Platform  | URL                                         |
 |-----------|---------------------------------------------|
-| OpenShift | https://console.apps.shift.nerc.mghpcc.org  |
+| OpenShift | https://console.apps.shift.nerc.mghpcc.org/ |
 | OpenStack | https://stack.nerc.mghpcc.org/              |
 
 ## FIGlet

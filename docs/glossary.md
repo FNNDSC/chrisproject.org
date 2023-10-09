@@ -1,3 +1,8 @@
+---
+title: Glossary
+sidebar_position: 98
+---
+
 # Glossary
 
 ### Superuser

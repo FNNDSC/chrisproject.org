@@ -1,11 +1,12 @@
 ---
 sidebar_position: 0
+title: Introduction
 ---
 
 # Introduction
 
 _ChRIS_ is a **container** platform for medical research and compute.
-
+This documentation is about _ChRIS_ usage, concepts, development, and deployment.
 
 ## Getting Started
 

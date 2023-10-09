@@ -115,7 +115,7 @@ chrs switch
   jennings    http://cube-next.tch.harvard.edu/api/v1/
   jenni       http://cube-next.tch.harvard.edu/api/v1/
   rudolph     http://cube-next.tch.harvard.edu/api/v1/
-> jennydaman  https://cube.chrisproject.org/api/v1/
+> jennydaman  https://cube.chrisproject.org/api.md/v1/
   chris       https://cube.chrisproject.org/api/v1/
   
 # non-interactive usage
