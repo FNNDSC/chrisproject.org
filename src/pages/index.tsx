@@ -55,7 +55,7 @@ function WipNotice() {
             In the meantime, please visit{" "}
             <a href="http://old-website.chrisproject.org/">
               http://old-website.chrisproject.org/
-            </a>
+            </a>{" "}
             for information about <em>ChRIS</em>.
             <br />
             You can help me build this website:{" "}

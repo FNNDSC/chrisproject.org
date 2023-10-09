@@ -52,7 +52,7 @@ _ChRIS_ is for everyone!
         <div class="card__body">
           <p>
             Get familiar with our project and code base by reading the{" "}
-            <a href="guide">contributor's guide</a>.
+            <a href="/docs/guide">contributor's guide</a>.
           </p>
         </div>
       </div>
