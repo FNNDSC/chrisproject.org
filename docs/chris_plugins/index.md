@@ -1,4 +1,8 @@
-# What are plugins?
+# ChRIS Plugins
+
+_ChRIS plugins_ are the essence of _ChRIS_: they do the actual scientific data processing.
+
+## What are plugins?
 
 Most simply, a _ChRIS_ plugin is a container image which has a command in the form
 
