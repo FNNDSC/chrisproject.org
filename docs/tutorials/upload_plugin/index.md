@@ -56,7 +56,7 @@ The most common way to obtain a JSON description of a plugin is by running the
 Python package. Note that the `chris_plugin_info` command only works for _ChRIS_ plugins
 written in Python using the `@chris_plugin.chris_plugin` decorator.
 
-## Upload a JSON Description File
+### Upload a JSON Description File
 
 Suppose you have a Python-based _ChRIS_ plugin container image `fnndsc/pl-example:1.2.3`.
 Its JSON description file can be created and written to the file `description.json` by running
@@ -74,7 +74,7 @@ curl -u "$username:$password" https://cube.chrisproject.org/chris-admin/api/v1/ 
     -F compute_names=cluster1,cluster2
 ```
 
-## Upload Plugin by URL Using API
+### Upload Plugin by URL Using API
 
 ```shell
 curl -u "$username:$password" https://cube.chrisproject.org/chris-admin/api/v1/ \
