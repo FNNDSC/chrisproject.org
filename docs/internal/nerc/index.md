@@ -1,6 +1,7 @@
 # NERC
 
-New England Research Cloud
+The [New England Research Cloud](https://nerc.mghpcc.org/) (NERC) is a regional public cloud.
+We pay for it.
 
 ## Quick Links
 

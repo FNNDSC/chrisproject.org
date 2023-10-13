@@ -71,5 +71,7 @@ This table guides you on where to put your documentation.
 Small images and other media can be uploaded to Git in the `static/` directory.
 Optionally, large assets such as PDFs, PPTX, ... can be hosted on
 [NERC OpenStack](stack.nerc.mghpcc.org/) Swift Object Storage.
+
+The instructions on how to do so are found [here](./docs/internal/nerc/swift.md).
 If you don't have an account, or are too lazy to figure this out,
 [message Jennings](https://matrix.to/#/@jennydaman:fedora.im) and he will handle it for you.
