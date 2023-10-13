@@ -17,6 +17,7 @@ For the most part, everything is run by Jennings. Contact: jennings.zhang@childr
 - ??? "My First _ChRIS Plugin_: Part 1"
 - ??? "My First _ChRIS Plugin_: Part 2"
 - ??? "_ChRIS_ Plugins: Best Practices"
+- ??? "Introduction to fnndsc-jupyter"
 
 ## Past Meetings
 
