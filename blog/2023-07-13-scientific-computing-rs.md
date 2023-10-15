@@ -15,5 +15,6 @@ https://scientificcomputing.rs/talks/zhang.html
 <iframe width="560" height="315" 
   src="https://www.youtube.com/embed/GfJiFkkgn2k?si=4u4Du7eO3wTWVa-7"
   title="YouTube video player" frameborder="0"
-  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen>
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen;"
+  allowfullscreen>
 </iframe>
