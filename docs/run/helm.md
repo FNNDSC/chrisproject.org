@@ -87,10 +87,53 @@ Here are some common situations where the default values will not work.
 A NFS-based storage class (for instance, using [nfs-subdir-external-provisioner](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner))
 may require that all (stateful) containers run as a user with a specific UID. This can be achieved by configuring `securityContext`.
 
-### OpenShift
+### RWO Volume Workarounds
 
-The `bitnami/postgresql` subchart requires specific security configurations for OpenShift.
-See https://github.com/bitnami/charts/tree/main/bitnami/postgresql#differences-between-bitnami-postgresql-image-and-docker-official-image
+It is strongly recommended to use `ReadWriteMany` volumes. If your storage class can only provide
+`ReadWriteOnce` (RWO) volumes, then you need to do two workarounds.
+
+When installing `fnndsc/chris` set the value `cube.enablePodAffinityWorkaround=true`
+
+```shell
+helm install --set cube.enablePodAffinityWorkaround=true chris-one fnndsc/chris
+```
+
+Once `chris-one` is installed, you need to reconfigure `pman` to use the node which
+everything is running on. In the example below, we are using `oc` instead of `kubectl`.
+
+```shell
+selector='-l app.kubernetes.io/name=pfcon -l app.kubernetes.io/instance=chris-one'
+node=$(oc get pod -o jsonpath='{.items[0].spec.nodeName}' $selector)
+helm upgrade --reuse-values chris-one fnndsc/chris --set pfcon.pman.config.NODE_SELECTOR=kubernetes.io/hostname=$node
+oc rollout restart deployment $selector
+```
+
+### Reverse Proxy for HTTPS
+
+:::tip
+
+OpenShift Routes use a HTTP reverse proxy behind the scenes.
+
+:::
+
+If _CUBE_ is behind a (trusted) reverse proxy which adds HTTPS, you must set the config to be
+
+```yaml
+cube:
+  config:
+    # the two settings below tell CUBE to trust the reverse proxy's HTTPS headers
+    DJANGO_SECURE_PROXY_SSL_HEADER: "HTTP_X_FORWARDED_PROTO,https"
+    DJANGO_USE_X_FORWARDED_HOST: "true"
+
+    # for extra security...
+    DJANGO_ALLOWED_HOSTS: "https://example.org"
+    DJANGO_CORS_ALLOW_ALL_ORIGINS: "false"
+    DJANGO_CORS_ALLOWED_ORIGINS: "https://chrisui.example.org"
+
+    # other configs...
+    CUBE_CELERY_POLL_INTERVAL: "5.0"
+    AUTH_LDAP: "false"
+```
 
 ## What's Included?
 
