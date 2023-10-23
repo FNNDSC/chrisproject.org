@@ -61,7 +61,7 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
 }
 
-.rowOfLogos > * {
+.rowOfLogos > a > img {
   margin: 1em 0;
   height: 85px;
 }
