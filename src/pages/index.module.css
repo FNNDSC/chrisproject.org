@@ -28,6 +28,40 @@ h1, h2, h3, h4, h5, h6 {
 
 
 .jumbotron {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  margin: 3rem 0;
+}
+
+.blueBackground {
+  color: white;
+  background: #4185ca;
+}
+
+[data-theme='dark'] .blueBackground  {
+  background: #275584;
+}
+
+.darkBlueBackground {
+  color: white;
+  background: #275584;
+}
+
+[data-theme='dark'] .darkBlueBackground  {
+  background: #1f4265;
+}
+
+.paddedSection {
+  padding: 3rem 0;
+}
+
+.rowOfLogos {
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.rowOfLogos > * {
+  margin: 1em 0;
+  height: 85px;
 }

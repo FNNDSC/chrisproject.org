@@ -1,51 +1,90 @@
+import Link from "@docusaurus/Link";
 import clsx from "clsx";
 import React from "react";
 import styles from "./styles.module.css";
 
 type FeatureItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<"svg">>;
   description: JSX.Element;
+  Svg?: React.ComponentType<React.ComponentProps<"svg">>;
+  picture?: string;
 };
 
 const FeatureList: FeatureItem[] = [
-  // {
-  //   title: 'Easy to Use',
-  //   Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-  //   description: (
-  //     <>
-  //       Docusaurus was designed from the ground up to be easily installed and
-  //       used to get your website up and running quickly.
-  //     </>
-  //   ),
-  // },
-  // {
-  //   title: 'Focus on What Matters',
-  //   Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-  //   description: (
-  //     <>
-  //       Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-  //       ahead and move your docs into the <code>docs</code> directory.
-  //     </>
-  //   ),
-  // },
-  // {
-  //   title: 'Powered by React',
-  //   Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-  //   description: (
-  //     <>
-  //       Extend or customize your website layout by reusing React. Docusaurus can
-  //       be extended while reusing the same header and footer.
-  //     </>
-  //   ),
-  // },
+  {
+    title: "Built by researchers, for researchers.",
+    picture: "/img/website/illus_collaborate.png",
+    description: (
+      <>
+        Servers, drivers, compilation, installation... Let us handle that for
+        you. Focus on the science, not the plumbing. Jumpstart development using
+        our{" "}
+        <a href="https://github.com/FNNDSC/python-chrisapp-template">
+          Python app template
+        </a>{" "}
+        which includes an optimized <code>Dockerfile</code>. By automating the
+        boring stuff using{" "}
+        <Link to="/docs/chris_plugins/github_actions">GitHub Actions</Link>,
+        bringing your science to the multi-cloud has never been easier.
+      </>
+    ),
+  },
+  {
+    title: '"There\'s a plugin for that."',
+    picture: "/img/website/illus_data.png",
+    description: (
+      <>
+        Many popular neuroimaging software and pipelines are already available
+        as <em>ChRIS plugins</em> such as{" "}
+        <a href="https://app.chrisproject.org/plugin/21">FreeSurfer</a>,{" "}
+        <a href="https://app.chrisproject.org/plugin/47">FastSurfer</a>,{" "}
+        <a href="https://app.chrisproject.org/plugin/90">CIVET</a>,{" "}
+        <a href="https://app.chrisproject.org/plugin/55">dcm2niix</a>,{" "}
+        <a href="https://app.chrisproject.org/plugin/6">ANTs</a>, ... to name a
+        few. More <em>ChRIS plugins</em> can be found from our{" "}
+        <a
+          href="https://app.chrisproject.org/catalog"
+          rel="noopener noreferrer"
+        >
+          catalog
+        </a>
+        , which is a list that keeps growing.
+      </>
+    ),
+  },
+  {
+    title: "Works right where you are.",
+    Svg: require("@site/static/img/3rdparty/cncf-distribution-icon-color.svg")
+      .default,
+    description: (
+      <>
+        <em>ChRIS</em> is <span className="text--bold">vendor neutral</span>,
+        supporting many clouds, hardware architectures, and container engines.
+        Run it locally on <Link to="/docs/run/docker">Docker</Link> or{" "}
+        <Link to="/docs/run/podman">Podman</Link>, or scale up with{" "}
+        <Link to="/docs/run/helm">Kubernetes</Link>. One instance of{" "}
+        <em>ChRIS</em> can dispatch jobs to any of the above, as well as SLURM
+        for integration with your existing HPC.
+      </>
+    ),
+  },
 ];
 
-function Feature({ title, Svg, description }: FeatureItem) {
+function Feature({ title, Svg, description, picture }: FeatureItem) {
   return (
     <div className={clsx("col col--4")}>
       <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
+        <div className={styles.featurePicContainer}>
+          {Svg ? (
+            <Svg className={styles.featurePic} role="img" />
+          ) : (
+            <img
+              src={picture}
+              className={styles.featurePic}
+              alt="Illustration"
+            />
+          )}
+        </div>
       </div>
       <div className="text--center padding-horiz--md">
         <h3>{title}</h3>

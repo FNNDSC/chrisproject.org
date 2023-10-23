@@ -55,3 +55,13 @@ h6 {
 [data-theme='dark'] img[src$='#gh-light-mode-only'] {
   display: none;
 }
+
+
+/* Configuration of react-medium-image-zoom */
+
+[data-theme='dark'] .dark-zoom [data-rmiz-modal-overlay="hidden"] {
+  background-color: rgba(0, 0, 0, 0);
+}
+[data-theme='dark'] .dark-zoom [data-rmiz-modal-overlay="visible"] {
+  background-color: rgba(15, 15, 15, 1);
+}

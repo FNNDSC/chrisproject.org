@@ -5,7 +5,15 @@
   width: 100%;
 }
 
-.featureSvg {
+.featurePic {
+  width: 200px;
+}
+
+.featurePicContainer {
   height: 200px;
   width: 200px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
