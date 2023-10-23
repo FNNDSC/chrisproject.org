@@ -14,6 +14,15 @@ connect this data to an instance of Grafana which we control.
 
 ## Finding the Prometheus Endpoint
 
+Red Hat has a couple of articles
+([1](https://www.redhat.com/en/blog/custom-grafana-dashboards-red-hat-openshift-container-platform-4),
+[2](https://cloud.redhat.com/blog/thanos-querier-versus-thanos-querier))
+about how to connect OpenShift to Grafana to build custom dashboards, however their approach is
+to connect to an internal "thanos-querier" service using a service account with a cluster role.
+Regular users cannot create cluster roles, so these solutions don't work for us.
+Nevertheless, it should be possible to query OpenShift's "built-in" Prometheus as regular users
+since we can do it from the OpenShift web console's developer view.
+
 ![Screenshot of OpenShift "Observe" dashboard with devtools open](openshift_network_dark.png)
 
 By pressing <kbd>f12</kbd> to open up Firefox's devtools we can see that the page is making
