@@ -129,10 +129,24 @@ function FourthSection() {
           <div className="col col--12">
             <div className={styles.rowOfLogos}>
               <FnndscLogo />
-              <img src="/img/3rdparty/bch_logo_white.png" alt="BCH logo" />
-              <img src="/img/3rdparty/redhat_rev.png" alt="Red Hat logo" />
-              <img src="/img/3rdparty/bu-logo.png" alt="BU logo" />
-              <img src="/img/3rdparty/moc_white.png" alt="MOC logo" />
+              <a
+                href="https://www.childrenshospital.org/research"
+                rel="noopener noreferrer"
+              >
+                <img src="/img/3rdparty/bch_logo_white.png" alt="BCH logo" />
+              </a>
+              <a
+                href="https://research.redhat.com/partnerships/boston-university/"
+                rel="noopener noreferrer"
+              >
+                <img src="/img/3rdparty/redhat_rev.png" alt="Red Hat logo" />
+              </a>
+              <a href="https://www.bu.edu/rhcollab/" rel="noopener noreferrer">
+                <img src="/img/3rdparty/bu-logo.png" alt="BU logo" />
+              </a>
+              <a href="https://massopen.cloud/" rel="noopener noreferrer">
+                <img src="/img/3rdparty/moc_white.png" alt="MOC logo" />
+              </a>
             </div>
           </div>
         </div>
