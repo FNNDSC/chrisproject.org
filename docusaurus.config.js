@@ -35,7 +35,7 @@ const config = {
   },
 
   // We have 3 blogs:
-  // - Engineering Blog: high-ish quality write-ups about technical challenges solutions
+  // - Blog:             high-ish quality write-ups about technical challenges solutions
   //                     (Default blog, configuration not shown below)
   // - Meeting Minutes:  low-ish quality notes about internal meetings
   // - ChRISalis:        The ChRIS Learning Colloquia by Jennings
@@ -101,7 +101,7 @@ const config = {
             position: 'left',
             label: 'Documentation',
           },
-          {to: '/blog', label: 'Engineering Blog', position: 'left'},
+          {to: '/blog', label: 'Blog', position: 'left'},
           {to: '/meeting_minutes', label: 'Meeting Minutes', position: 'left'},
           {to: '/ChRISalis', label: 'ChRISalis', position: 'left'},
           {
