@@ -4,7 +4,29 @@ authors: rudolph
 tags: [musings, historical, OpenShift, future]
 ---
 
-I have found myself of late trying to explain a bit how ChRIS relates to the "Cloud". Usually in the mix is the term "AI". I suppose each of these concepts, "ChRIS", "Cloud", "AI" are fully deserving of their own blogs. Still, in the interest of just tackling a question that I have been asked about, I thought to marshal my thoughts, and also speak to how ChRIS has grown with technologies like OpenShift. I'll honor the "musings" tag line and keep this posting conversational, even though OpenShift is a specific engineering technology.
+I have found myself of late trying to explain a bit how ChRIS relates to the "Cloud". How does ChRIS benefit from cloud technologies and build compelling solutions? Usually in the mix is the term "AI". I suppose each of these concepts, "ChRIS", "Cloud", "AI" are fully deserving of their own blogs. Still, in the interest of just tackling a question that I have been asked about, and to marshal my thoughts, I'll attempt to discuss a bit about how ChRIS and also speak to how ChRIS has grown with technologies like OpenShift. I'll honor the "musings" tag line and keep this posting somewhat conversational, even though OpenShift is a specific engineering technology.
+
+I have been working in what I'll call _scientific compute_ for more than two decades. This does of course beg the question _"What is scientific compute?"_ other than the obvious "something to do with science". From my perspective _scientific compute_ stems from a very simple design pattern: analyze data (related to some science) and produce results. That's it. No mess, no fuss. The bedrock of science of course is _data_ (or _observations_) and the purpose of science really is to map or analyze that data into something meaningful. _Scientific compute_ stays close to that ethos. In a practical sense, to me _scientific compute_ consists of input data, some analysis on that data, and output data. True, such a pattern is not exclusively _scientific_ and there are no doubt many other domains that follow something similar -- financial computing, for example. Still, as a general observation, this pattern is endemic in computing in science.
+
+```mermaid
+┌────────────┐    ┌────────────┐    ┌─────────────┐ 
+│            │    │ Scientific │    │             │  
+│ Input data ├───►│  Analysis  ├───►│ Output data │  
+│            │    │            │    │             │ 
+└────────────┘    └────────────┘    └─────────────┘ 
+```
+
+```mermaid
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->D;
+```
+
+is reads in a bunch of data, then "crunches" it (or _computes_ on it), and saves output results. 
+
+
 
 In thinking about this I realized I might be a bit too close to seeing "how the sausage is made". So in an effort to "get out of the factory" (and also my own head) I thought to take several steps out and back and maybe tackle this from a fresh perspective. I like to ground myself in something of a historical story, particularly if I consider future directions, so I invite you to take a seat (if so inclined) and let me ramble a bit on how ChRIS was enabled by OpenShift and how future use of that cloud technology helps us solve problems in new and innovative ways.
 
