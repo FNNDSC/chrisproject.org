@@ -102,7 +102,7 @@ const config = {
             label: 'Documentation',
           },
           {to: '/blog', label: 'Blog', position: 'left'},
-          {to: '/meeting_minutes', label: 'Meeting Minutes', position: 'left'},
+          // {to: '/meeting_minutes', label: 'Meeting Minutes', position: 'left'},
           {to: '/ChRISalis', label: 'ChRISalis', position: 'left'},
           {
             href: 'https://github.com/FNNDSC',
