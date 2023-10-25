@@ -10,9 +10,13 @@ jennings:
   url: https://jennydaman.gitlab.io
   image_url: /img/team/jennings.jpg
 
-
 gideon:
   name: Gideon Pinto
   title: Research Developer @ Boston Children's Hospital
   image_url: /img/team/gideonpinto.jpg
-  
+
+rudolph:
+  name: Rudolph Pienaar
+  title: Technical Director / FNNDSC @ Boston Children's Hospital
+  image_url: /img/team/rudolph.jpg
+
