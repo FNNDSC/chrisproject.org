@@ -14,8 +14,8 @@ We pay for it.
 
 ```shell
 # using cURL
-curl 'https://figlet-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/?message=YOUR+TEXT'
+curl 'https://figlet.chrisproject.org/?message=YOUR+TEXT'
 
 # using xhs
-xhs figlet-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org message=='YOUR TEXT'
+xhs figlet.chrisproject.org message=='YOUR TEXT'
 ```
