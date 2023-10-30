@@ -4,7 +4,7 @@ authors: rudolph
 tags: [musings, historical, OpenShift, future]
 ---
 
-I have found myself of late trying to explain a bit how ChRIS relates to the "Cloud". How does ChRIS benefit from cloud technologies and build compelling solutions? Usually in the mix is the term "AI". I suppose each of these concepts, "ChRIS", "Cloud", "AI" are fully deserving of their own blogs. Still, in the interest of just tackling a question that I have been asked about, and to marshal my thoughts, I'll attempt to discuss a bit about how ChRIS and also speak to how ChRIS has grown with technologies like OpenShift. I'll honor the "musings" tag line and keep this posting somewhat conversational, even though OpenShift is a specific engineering technology.
+I have found myself of late trying to explain a bit how ChRIS relates to the "Cloud". How does ChRIS benefit from cloud technologies and build compelling solutions? Usually in the mix is the term "AI". I suppose each of these concepts, "ChRIS", "Cloud", "AI" are fully deserving of their own blogs. Still, in the interest of just tackling a question that I have been asked about, and to marshal my thoughts, I'll attempt to discuss a bit about how ChRIS relates to and has benefited from technologies like OpenShift. I'll honor the "musings" tag line and keep this posting somewhat conversational, even though OpenShift is a specific engineering technology.
 
 I have been working in what I'll call _scientific compute_ for more than two decades. This does of course beg the question _"What is scientific compute?"_ other than the obvious "something to do with science". From my perspective _scientific compute_ stems from a very simple design pattern: analyze data (related to some science) and produce results. That's it. No mess, no fuss. The bedrock of science of course is _data_ (or _observations_) and the purpose of science really is to map or analyze that data into something meaningful. _Scientific compute_ stays close to that ethos. In a practical sense, to me _scientific compute_ consists of input data, some analysis on that data, and output data. True, such a pattern is not exclusively _scientific_ and there are no doubt many other domains that follow something similar -- financial computing, for example. Still, as a general observation, this pattern is endemic in computing in science.
 
@@ -16,16 +16,23 @@ I have been working in what I'll call _scientific compute_ for more than two dec
 └────────────┘    └────────────┘    └─────────────┘ 
 ```
 
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
+Before we get stuck into things, let me talk about three core observations on scientific compute that shape how technologies such as the "cloud" relate to this type of computing. I've tried to separate these into independent concepts as far as possible, but the truth is that these do in fact blend somewhat into each other. Or rather, each is influenced by or a causal result of the others. I'll try and organize these in some logical order where each observation can be shown to be somewhat causal to the next.
 
-is reads in a bunch of data, then "crunches" it (or _computes_ on it), and saves output results. 
+:::info
 
+There is tremendous value in _scientific_ compute
+
+:::
+
+While this observation is opinionated, it does stand to reason that I'd believe this. I shouldn't need to belabor the point that using _computing_ to analyze _scientific_ data has led to tremendous progress, particularly post mid 20th century. I will concede that the ethics of some of the science might be murky. Hulking behemoths of the 1950s -- analog computers -- had been used for simulating the innards of the atom, as well as nuclear explosions. Still, punch cards of the 1960s programmed the first digital computers for weather prediction. Mankind traveled to the moon and back on computing that guided the vehicles, life support, communications, monitoring, etc. What is truly remarkable is that all that computing power wouldn't stress a modern cell phone. The "micro" revolution of the 1970s and 1980s brought computers into people's homes and lives. By the 1990s, medicine was using computers to better process images that peered into the very stuff of bodies. By the time I got into the field in the early 2000s computing was fundamental. My particular field of study, neuroradiology, was a hot bed of image processing and mathematical philosophizing tied closely to imaging techniques. Diffusion tractography, an approach that _roughly_ mapped to mapping out the "wiring" of the brain was coming on line and it seemed that possibilities of combining tractography and anatomical imaging and functional MRI -- techniques that all rely ultimately on understanding mathematics and computing would push back the frontiers. The obscure branch of graph theory suddenly was in vogue as it allowed the quantification of the "connectivity" of the brain. Hubs, and small worldedness, and interconnectivity -- terms from mathematics promised to better understand how we were put together, and of course to crunch the mathematics we needed programming and computing. No "AI" here -- just human intelligence using computing. 
+
+:::info
+
+Most scientists are not _programmers_
+
+:::
+
+While on the surface this might seem unsurprising, it is my belief that this simple 
 
 
 In thinking about this I realized I might be a bit too close to seeing "how the sausage is made". So in an effort to "get out of the factory" (and also my own head) I thought to take several steps out and back and maybe tackle this from a fresh perspective. I like to ground myself in something of a historical story, particularly if I consider future directions, so I invite you to take a seat (if so inclined) and let me ramble a bit on how ChRIS was enabled by OpenShift and how future use of that cloud technology helps us solve problems in new and innovative ways.
