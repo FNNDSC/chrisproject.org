@@ -5,10 +5,11 @@ We pay for it.
 
 ## Quick Links
 
-| Platform  | URL                                         |
-|-----------|---------------------------------------------|
-| OpenShift | https://console.apps.shift.nerc.mghpcc.org/ |
-| OpenStack | https://stack.nerc.mghpcc.org/              |
+| Platform                | URL                                                                     |
+|-------------------------|-------------------------------------------------------------------------|
+| OpenShift               | https://console.apps.shift.nerc.mghpcc.org/                             |
+| OpenStack               | https://stack.nerc.mghpcc.org/                                          |
+| List of OpenShift Nodes | https://github.com/OCP-on-NERC/docs/blob/main/architecture/hardware.csv |
 
 ## FIGlet
 
