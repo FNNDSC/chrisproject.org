@@ -1,6 +1,6 @@
 ---
 title: MacOS Recovery
-authors: Hsiao
+authors: hsiao
 tags: [mac]
 ---
 
