@@ -37,12 +37,12 @@ Additionally, pull requests can be automatically tested too
 ## Repository Settings
 
 Your GitHub repository settings should define the following secrets. For
-help, see <https://docs.github.com/en/actions/reference/encrypted-secrets>
+help, see https://docs.github.com/en/actions/reference/encrypted-secrets
 
 :::tip
 
 use organization level secrets. If your repository lives under
-<https://github.com/FNNDSC>, there is nothing you need to do.
+https://github.com/FNNDSC, there is nothing you need to do.
 
 :::
 

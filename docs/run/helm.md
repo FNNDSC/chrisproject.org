@@ -148,7 +148,7 @@ The `chris` chart gives you:
 ### What's not included?
 
 - Front-ends: please install [ChRIS_ui](https://github.com/FNNDSC/ChRIS_ui)
-- Plugins: browse our catalog and install them from <https://app.chrisproject.org/catalog>
+- Plugins: browse our catalog and install them from https://app.chrisproject.org/catalog
 - :warning: Database backups :warning:
 - High-availability (HA), autoscaling
 
