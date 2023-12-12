@@ -12,3 +12,4 @@ The configuration is found here --> https://github.com/FNNDSC/NERC/tree/master/a
 
 1. Create a new domain here --> https://ackee.chrisproject.org/#/settings
 2. Add the "Embed code" to the HTML of the website
+3. Add the website's domain to `ackee.corsHeaders` in the [Helm release's `values.yaml`](https://github.com/FNNDSC/NERC/blob/master/ackee/values.yaml), then run `./apply.sh`
