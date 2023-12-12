@@ -7,6 +7,8 @@ import DataTable, {
   TableColumn,
 } from "react-data-table-component";
 import { CheckCircle, XCircle } from "react-feather";
+import { useEffect, useState } from "react";
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 
 // mutate dark theme of DataTable to have a transparent background instead of gray
 createTheme("dark", {
@@ -83,8 +85,16 @@ const Expanded: React.FC<ExpanderComponentProps<DeploymentInfo>> = ({
 };
 
 export default function DeploymentsTable({ data }: { data: DeploymentInfo[] }) {
-  const docusaurusIsDark =
-    document.documentElement.getAttribute("data-theme") === "dark";
+  const { siteConfig } = useDocusaurusContext();
+  const [docusaurusIsDark, setDocusaurusIsDark] = useState(
+    siteConfig.themeConfig.colorMode.defaultMode === "dark",
+  );
+
+  useEffect(() => {
+    setDocusaurusIsDark(
+      document.documentElement.getAttribute("data-theme") === "dark",
+    );
+  }, []);
 
   return (
     <DataTable
