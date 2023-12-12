@@ -1,0 +1,11 @@
+import { deployments } from './data'
+import DeploymentsTable from './table'
+
+# Deployments
+
+This page is a list of all our deployments.
+(It's kept up-to-date by hand. The only way to know what's really out there is by running `kubectl get pods` or `netstat -tlpn`!)
+
+Status page: https://fnndsc.github.io/statuspage/
+
+<DeploymentsTable data={deployments} />
