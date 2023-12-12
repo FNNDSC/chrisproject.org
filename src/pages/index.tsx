@@ -4,6 +4,7 @@ import HomepageFeatures from "@site/src/components/HomepageFeatures";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React from "react";
+import useAckee from "use-ackee";
 
 import FnndscLogo from "@site/src/components/FnndscLogo";
 import VideoJumbotron from "@site/src/components/VideoJumbotron";
@@ -157,6 +158,20 @@ function FourthSection() {
 
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
+
+  useAckee(
+    "/",
+    {
+      server: "https://ackee.chrisproject.org",
+      domainId: "c4f71e33-cb14-452c-9203-020e102feec0",
+    },
+    {
+      detailed: false,
+      ignoreLocalhost: true,
+      ignoreOwnVisits: true,
+    },
+  );
+
   return (
     <div id="app">
       <Layout
