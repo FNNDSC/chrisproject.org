@@ -70,6 +70,15 @@ const deployments: DeploymentInfo[] = [
     },
     isChris: true,
     public: true,
+    notes: (
+      <span>
+        Admin user username and passwords can be found on{" "}
+        <Link to="https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/secrets/cube-fetalmri-org-chris-superuser">
+          OpenShift Console
+        </Link>
+        .
+      </span>
+    ),
   },
   {
     url: "https://test-cube-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/api/v1/",
