@@ -7,7 +7,7 @@ is a feature of [ChRIS_ui](https://github.com/FNNDSC/ChRIS_ui) which uses
 https://app.fetalmri.org/niivue
 
 To see a dataset in the Visual Dataset Browser, it is necessary to run the plugin
-[pl-visual-dataset](https://github.com/FNNDSC/pl-visual-dataset).
+[pl-visual-dataset](https://app.fetalmri.org/plugin/7).
 The parameters for pl-visual-dataset are also used to add metadata to a dataset
 such as author, academic references, and default Niivue options for each file.
 
