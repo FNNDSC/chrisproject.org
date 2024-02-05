@@ -81,7 +81,7 @@ const deployments: DeploymentInfo[] = [
     ),
   },
   {
-    url: "https://test-cube-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/api/v1/",
+    url: "https://publictesting-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/api/v1/",
     description:
       "Public CUBE for testing against the CUBE API in CI environments.",
     host: "NERC (OpenShift)",
@@ -92,6 +92,12 @@ const deployments: DeploymentInfo[] = [
     },
     isChris: true,
     public: true,
+    notes: (
+      <span>
+        I plan to implement a cron job which deletes all users and all user data older than a week,
+        excluding special users such as `fnndsc` (admin) and `chrisui` (test user reused in each test run).
+      </span>
+    )
   },
   {
     url: "http://chris-next.tch.harvard.edu",
