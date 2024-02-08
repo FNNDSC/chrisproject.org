@@ -126,7 +126,6 @@ cube:
     DJANGO_USE_X_FORWARDED_HOST: "true"
 
     # for extra security...
-    DJANGO_ALLOWED_HOSTS: "https://example.org"
     DJANGO_CORS_ALLOW_ALL_ORIGINS: "false"
     DJANGO_CORS_ALLOWED_ORIGINS: "https://chrisui.example.org"
 
