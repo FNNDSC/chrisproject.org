@@ -140,7 +140,7 @@ const deployments: DeploymentInfo[] = [
     ),
   },
   {
-    url: "https://fetalmri-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/api/v1/",
+    url: "https://fetalmri-cube.apps.shift.nerc.mghpcc.org/api/v1/",
     description: "Fetal MRI dataset CUBE",
     host: "NERC (OpenShift)",
     src: {
@@ -160,7 +160,7 @@ const deployments: DeploymentInfo[] = [
     ),
   },
   {
-    url: "https://publictesting-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/api/v1/",
+    url: "https://cube-for-testing-chrisui.apps.shift.nerc.mghpcc.org/api/v1/",
     description:
       "Public CUBE for testing against the CUBE API in CI environments.",
     host: "NERC (OpenShift)",
