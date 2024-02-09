@@ -33,9 +33,10 @@ oc new-app --name chrisui \
   being able to generate the version string. See https://github.com/FNNDSC/ChRIS_ui/pull/508
 - (optional) Default limit is 2Gi mem, which is enough, but a little more won't hurt.
 - (optional) Set RunPolicy=SerialLatestOnly
+- (optional) Set `successfulBuildsHistoryLimit` and `failedBuildsHistoryLimit`
 
 ```shell
-oc patch bc/chrisui --patch '{"spec":{"resources":{"limits":{"memory":"3Gi"}},"runPolicy":"SerialLatestOnly","source":{"git":{"ref":"refs/heads/master"}}}}'
+oc patch bc/chrisui --patch '{"spec":{"resources":{"limits":{"memory":"3Gi"}},"runPolicy":"SerialLatestOnly","source":{"git":{"ref":"refs/heads/master"}}",successfulBuildsHistoryLimit":2,"failedBuildsHistoryLimit":2}}'
 ```
 
 ### 4. Create a Route
