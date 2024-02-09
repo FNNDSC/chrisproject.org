@@ -91,3 +91,15 @@ Use [chrisomatic](https://github.com/FNNDSC/chrisomatic) to upload a list of plu
 
 _ChRIS_ plugin GitHub repositories can be configured to be automatically uploaded
 using [GitHub Actions](../../chris_plugins/github_actions.md).
+
+## Non-canonical methods
+
+While not _officially_ supported, a python helper script is available that can effect registration by directly speaking to the `CUBE` API directly, [plugin2cube](https://github.com/FNNDSC/plugin2cube). In some cases this can be a quicker/simpler way to register a plugin. It does however require the `CUBE` *admin* username and password and knowledge of the compute environments on a `CUBE`, and assumes that the host executing the script has `docker` installed.
+
+For example:
+
+```shell
+plugin2cube --CUBEurl http://rc-live.tch.harvard.edu:32222/api/v1/ \
+            --CUBEuser XXXXXX --CUBEpasswd  XXXXXX                 \
+            --computenames galena-avx --dock_image ghcr.io/fnndsc/pl-dicom_repack:1.1.4
+```
