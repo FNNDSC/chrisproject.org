@@ -1,8 +1,87 @@
-import { DeploymentInfo, SrcType } from "./model";
+import {DeploymentInfo, SrcType} from "./model";
 import * as React from "react";
 import Link from "@docusaurus/Link";
 
 const deployments: DeploymentInfo[] = [
+  {
+    url: "https://app1.chrisproject.org",
+    src: {
+      type: SrcType.OpenShift,
+      value: "https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/buildconfigs/app1-chrisproject-org"
+    },
+    description: "ChRIS_ui for CUBE1",
+    host: "NERC (OpenShift)",
+    isChris: true,
+    public: true
+  },
+  {
+    url: "https://cube1.chrisproject.org/api/v1/",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/tree/master/cube1"
+    },
+    description: (<span>Our first, 100% OpenShift deployment of <em>ChRIS</em>.</span>),
+    notes: (
+      <p>
+        <em>CUBE</em>, <em>pfcon</em>, and all plugin instance jobs are confined to run on a single node.
+        This is because ReadWriteMany filesystem volumes are not available.
+        See <a href="https://github.com/nerc-project/operations/issues/171">"The Big Storage Issue."</a>
+      </p>
+    ),
+    host: "NERC (OpenShift)",
+    isChris: true,
+    public: true
+  },
+  {
+    url: "https://orthanc.chrisproject.org",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/tree/master/cube1"
+    },
+    description: "Orthanc PACS server for CUBE1",
+    notes: (<div>
+      <p>
+        Login account credentials can be obtained from{' '}
+        <a
+          href="https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/secrets/cube1-orthanc">
+          OpenShift Console
+        </a>.
+      </p>
+      <p>
+        The GitHub repository also provides some helpful scripts:
+      </p>
+      <p>
+        <ul>
+          <li>
+            <code>scripts/list_mrns.sh</code>: lists MRNs of patients in Orthanc
+          </li>
+          <li>
+            <code>scripts/upload2orthanc.sh</code>: bulk upload of DICOM files to Orthanc
+          </li>
+        </ul>
+      </p>
+    </div>),
+    host: "NERC (OpenShift)",
+    isChris: false,
+    public: true
+  },
+  {
+    url: "https://ohif.chrisproject.org",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/tree/master/cube1"
+    },
+    description: (<span>
+      <a href="https://ohif.org/">
+        <em>OHIF</em>
+      </a>{' '}
+      viewer for the <em>pfdcm</em> filesystem cache of CUBE1.
+    </span>),
+    notes: "Keep in mind that this OHIF displays data stored by PFDCM (which is mostly the same as but is not guaranteed to be the same data as CUBE PACSfiles).",
+    host: "NERC (OpenShift)",
+    isChris: false,
+    public: true
+  },
   {
     url: "https://cube.chrisproject.org/api/v1/",
     description: (
