@@ -94,7 +94,9 @@ using [GitHub Actions](../../chris_plugins/github_actions.md).
 
 ## Non-canonical methods
 
-While not _officially_ supported, a python helper script is available that can effect registration by directly speaking to the `CUBE` API directly, [plugin2cube](https://github.com/FNNDSC/plugin2cube). In some cases this can be a quicker/simpler way to register a plugin. It does however require the `CUBE` *admin* username and password and knowledge of the compute environments on a `CUBE`, and assumes that the host executing the script has `docker` installed.
+While not _officially_ supported, a python helper script, [plugin2cube](https://github.com/FNNDSC/plugin2cube), is available that can effect registration by directly speaking to the `CUBE` API.
+
+In some cases this can be a quicker/simpler way to register a plugin. It does however require the `CUBE` *admin* username and password and knowledge of the compute environments on a `CUBE`, and assumes that the host executing the script has `docker` installed.
 
 For example:
 
