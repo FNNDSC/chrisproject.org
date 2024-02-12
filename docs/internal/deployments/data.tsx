@@ -43,7 +43,7 @@ const deployments: DeploymentInfo[] = [
       <p>
         Login account credentials can be obtained from{' '}
         <a
-          href="https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/secrets/cube1-orthanc">
+          href="https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/secrets/orthanc-user">
           OpenShift Console
         </a>.
       </p>
