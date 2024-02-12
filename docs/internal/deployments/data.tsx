@@ -22,11 +22,17 @@ const deployments: DeploymentInfo[] = [
     },
     description: (<span>Our first, 100% OpenShift deployment of <em>ChRIS</em>.</span>),
     notes: (
-      <p>
-        <em>CUBE</em>, <em>pfcon</em>, and all plugin instance jobs are confined to run on a single node.
-        This is because ReadWriteMany filesystem volumes are not available.
-        See <a href="https://github.com/nerc-project/operations/issues/171">"The Big Storage Issue."</a>
-      </p>
+      <>
+        <p>
+          <em>CUBE</em>, <em>pfcon</em>, and all plugin instance jobs are confined to run on a single node.
+          This is because ReadWriteMany filesystem volumes are not available.
+          See <a href="https://github.com/nerc-project/operations/issues/171">"The Big Storage Issue."</a>
+        </p>
+        <p>
+          On GitHub, there is a script called `scripts/chrisomatic.sh` which will register all plugins from
+          `chrisomatic.yml` to CUBE1.
+        </p>
+      </>
     ),
     host: "NERC (OpenShift)",
     isChris: true,
