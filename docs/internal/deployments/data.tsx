@@ -4,18 +4,26 @@ import Link from "@docusaurus/Link";
 
 const deployments: DeploymentInfo[] = [
   {
-    url: "https://app1.chrisproject.org",
+    url: "https://app.chrisproject.org",
     src: {
       type: SrcType.OpenShift,
-      value: "https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/buildconfigs/app1-chrisproject-org"
+      value: "https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/buildconfigs/app-chrisproject-org"
     },
     description: "ChRIS_ui for CUBE1",
     host: "NERC (OpenShift)",
+    notes: (
+      <span>
+        Automatic latest build of{" "}
+        <Link to="https://github.com/FNNDSC/ChRIS_ui">
+          https://github.com/FNNDSC/ChRIS_ui
+        </Link>{" "}
+        master branch.
+      </span>),
     isChris: true,
     public: true
   },
   {
-    url: "https://cube1.chrisproject.org/api/v1/",
+    url: "https://cube.chrisproject.org/api/v1/",
     src: {
       type: SrcType.GitHub,
       value: "https://github.com/FNNDSC/NERC/tree/master/cube1"
@@ -87,42 +95,6 @@ const deployments: DeploymentInfo[] = [
     host: "NERC (OpenShift)",
     isChris: false,
     public: true
-  },
-  {
-    url: "https://cube.chrisproject.org/api/v1/",
-    description: (
-      <span>
-        Public demo CUBE. <b>Very outdated</b>
-      </span>
-    ),
-    host: "fnndsc.tch.harvard.edu (docker-compose)",
-    src: {
-      type: SrcType.Path,
-      value: "/home/jorge.bernal/cube.chrisproject.org",
-    },
-    isChris: true,
-    public: true,
-  },
-  {
-    url: "https://app.chrisproject.org",
-    description: "Public ChRIS_ui connected to https://cube.chrisproject.org",
-    host: "NERC (OpenShift)",
-    src: {
-      type: SrcType.OpenShift,
-      value:
-        "https://console.apps.shift.nerc.mghpcc.org/k8s/ns/hosting-of-medical-image-analysis-platform-dcb83b/buildconfigs/chrisui",
-    },
-    isChris: true,
-    public: true,
-    notes: (
-      <span>
-        Automatic latest build of{" "}
-        <Link to="https://github.com/FNNDSC/ChRIS_ui">
-          https://github.com/FNNDSC/ChRIS_ui
-        </Link>{" "}
-        master branch.
-      </span>
-    ),
   },
   {
     url: "https://app.fetalmri.org",
