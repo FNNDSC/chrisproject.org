@@ -36,7 +36,7 @@ oc new-app --name chrisui \
 - (optional) Set `successfulBuildsHistoryLimit` and `failedBuildsHistoryLimit`
 
 ```shell
-oc patch bc/chrisui --patch '{"spec":{"resources":{"limits":{"memory":"3814Mi"}},"runPolicy":"SerialLatestOnly","source":{"git":{"ref":"refs/heads/master"}}",successfulBuildsHistoryLimit":2,"failedBuildsHistoryLimit":2}}'
+oc patch bc/chrisui --patch '{"spec":{"resources":{"limits":{"memory":"3814Mi"}},"runPolicy":"SerialLatestOnly","source":{"git":{"ref":"refs/heads/master"}},"successfulBuildsHistoryLimit":2,"failedBuildsHistoryLimit":2}}'
 ```
 
 ### 4. Create a Route
