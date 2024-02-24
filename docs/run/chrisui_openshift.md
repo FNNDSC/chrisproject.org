@@ -48,3 +48,11 @@ To create a HTTPS route on a custom domain on the NERC, see [here](/docs/interna
 ### 5. Add a GitHub Webhook for automatic updates
 
 More information: https://docs.openshift.com/container-platform/4.11/cicd/builds/triggering-builds-build-hooks.html#builds-webhook-triggers_triggering-builds-build-hooks
+
+### 6. (Optional) Reconfigure the Deployment
+
+Decrease memory and CPU limit. It's just an HTTP server, no need for much.
+
+```shell
+oc set resources deployment chrisui --limits=cpu=1,memory=3814Mi --requests=cpu=1,memory=3814Mi
+```
