@@ -11,13 +11,20 @@ default Niivue options.
 
 :::tip
 
-Currently, only `.nii.gz` files are supported by `pl-visual-dataset`.
+This documentation is for `pl-visual-dataset` version `0.2.0`, which currently
+[supports `.nii.gz`, `.nii`, and `.mgz` volumes](https://github.com/FNNDSC/pl-visual-dataset/blob/v0.2.0/visualdataset/index_brain_dir.py#L8-L13).
 
 :::
 
+## Well-Known Mode: FreeSurfer
+
+The easiest situation is feeding the outputs of FreeSurfer (or FastSurfer) to
+`pl-visual-dataset`. Simply create a plugin instance with the option
+`--mode=freesurfer-7.3.3`, and optionally specify a value for `--readme`.
+
 ## Matchers
 
-To run `pl-visual-dataset`, provide a value for `--matchers`. Typically this is
+To run `pl-visual-dataset`, provide a value for `--matchers`. Typically, this is
 done by uploading a JSON file to _ChRIS_ then running `pl-tsdircopy` followed by
 a `pl-topologicalcopy` in the same feed.
 
