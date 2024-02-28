@@ -65,3 +65,9 @@ h6 {
 [data-theme='dark'] .dark-zoom [data-rmiz-modal-overlay="visible"] {
   background-color: rgba(15, 15, 15, 1);
 }
+
+/* configuration of flexanalytics/plugin-image-zoom */
+
+[data-theme='dark'] .medium-zoom-overlay {
+  background-color: rgba(15, 15, 15, 1) !important;
+}

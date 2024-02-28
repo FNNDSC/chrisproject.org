@@ -42,6 +42,7 @@ const config = {
   //
   // Documentation: https://docusaurus.io/docs/blog#multiple-blogs
   plugins: [
+    'plugin-image-zoom',
     [
       '@docusaurus/plugin-content-blog',
       {
@@ -205,7 +206,9 @@ const config = {
         searchPagePath: 'search',
 
         //... other Algolia params
-      }
+      },
+      // https://github.com/flexanalytics/plugin-image-zoom
+      // imageZoom: {}
     }),
 };
 
