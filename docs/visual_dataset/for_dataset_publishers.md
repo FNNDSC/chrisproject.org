@@ -11,18 +11,28 @@ default Niivue options.
 
 :::tip
 
-This documentation is for `pl-visual-dataset` version `0.2.0`, which currently
+This documentation is for `pl-visual-dataset` version `0.3.0`, which currently
 [supports `.nii.gz`, `.nii`, and `.mgz` volumes](https://github.com/FNNDSC/pl-visual-dataset/blob/v0.2.0/visualdataset/index_brain_dir.py#L8-L13).
 
 :::
 
-## Well-Known Mode: FreeSurfer
+## Well-Known Modes
 
-The easiest situation is feeding the outputs of FreeSurfer (or FastSurfer) to
-`pl-visual-dataset`. Simply create a plugin instance with the option
-`--mode=freesurfer-7.3.3`, and optionally specify a value for `--readme`.
+Currently, there are three modes:
 
-## Matchers
+- [FreeSurfer](https://surfer.nmr.mgh.harvard.edu/): `--mode=freesurfer-7.3.3`
+- [MALP-EM](https://github.com/ledigchr/MALPEM/): `--mode=malpem-1.3`
+- Everything mode (no arguments)
+
+When you use a value for `--mode`, `pl-visual-dataset` will select known output files from the specified
+program  and associate them with tags. For example, `--mode=freesurfer-7.3.3` will cause the file
+`mri/aparc.DKTatlas+aseg.mgz` to be recognized as a volume containing labels needing the `FreeSurferColorLUT.txt`
+color map.
+
+If `pl-visual-dataset` is run without arguments, all supported files (NIFTI, MGZ) will be matched, but
+but no tags will be associated.
+
+## Advanced: Matchers and Options
 
 To run `pl-visual-dataset`, provide a value for `--matchers`. Typically, this is
 done by uploading a JSON file to _ChRIS_ then running `pl-tsdircopy` followed by

@@ -15,9 +15,14 @@ feed title in the top-left to go back.
 
 ![Screenshot of Volume View](./volume_view.png)
 
-There is a list of files in the sidebar. Click on a file to open it, or <kbd>CTRL</kbd>/&#8984;-click
-to overlay the file on top of another selected file. When volume labels are loaded, you can see the name
-of the label at the bottom of the screen.
+There is a list of files in the sidebar. The files can be filtered by typing in the search bar,
+or by clicking on a "tag" to filter by tag.
+
+![Screenshot of filtering files by tags](./filter_by_tag.png)
+
+Click on a file to open it, or <kbd>CTRL</kbd>/&#8984;-click to overlay the file on top of
+another selected file. When volume labels are loaded, you can see the name of the label at
+the bottom of the screen.
 
 :::tip
 
