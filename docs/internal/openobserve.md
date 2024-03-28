@@ -3,7 +3,7 @@
 We have a deployment of [OpenObserve](https://openobserve.ai) deployed on the NERC.
 It is accessible here:
 
-https://openobserve-hosting-of-medical-image-analysis-platform-dcb83b.apps.shift.nerc.mghpcc.org/web/
+https://openobserve-fnndsc.apps.shift.nerc.mghpcc.org/web/
 
 ## Getting an Account
 
@@ -24,4 +24,4 @@ We use OpenObserve to store logs for some of our GitHub Actions.
 
 The source YAML is found here: https://github.com/FNNDSC/NERC/blob/master/openobserve/openobserve-small.yml
 
-The route and `openobserve-root-user` were created manually.
+The `openobserve-root-user` secret was created manually.
