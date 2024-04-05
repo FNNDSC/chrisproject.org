@@ -161,8 +161,9 @@ you can configure `chris` to use `NodePort` as a convenient ingress solution.
 
 ```shell
 helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
-     --set cube.ingress.nodePort=32000 \
-     --set cube.ingress.nodePortHost=$(hostname)
+     --set cube.server.service.type=NodePort \
+     --set cube.server.service.nodePort=32000 \
+     --set cube.server.service.nodePortHost=$(hostname)
 ```
 
 ### Superuser Creation
