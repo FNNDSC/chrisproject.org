@@ -141,8 +141,8 @@ The `chris` chart gives you:
 - The [_ChRIS_ backend server](https://github.com/FNNDSC/ChRIS_ultron_backEnd)
 - [pfcon](https://github.com/FNNDSC/pfcon), a compute provider for the _ChRIS_ backend
 - [pfdcm](https://github.com/FNNDSC/pfdcm), a PACS to _ChRIS_ connector
-- [pypx-DICOMweb](https://github.com/FNNDSC/pypx-rs/tree/master/pypx-DICOMweb), an API (compatible with [OHIF](https://ohif.org/) to browse DICOM data retrieved by _pfdcm_
-- A `NodePort` for ingress
+- [oxidicom](https://github.com/FNNDSC/oxidicom), a DICOM receiver for the _ChRIS_ backend
+- (optional) [Orthanc](https://www.orthanc-server.com/), an open-source PACS server
 
 ### What's not included?
 
