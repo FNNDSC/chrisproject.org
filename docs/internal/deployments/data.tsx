@@ -80,23 +80,6 @@ const deployments: DeploymentInfo[] = [
     public: true
   },
   {
-    url: "https://ohif.chrisproject.org",
-    src: {
-      type: SrcType.GitHub,
-      value: "https://github.com/FNNDSC/NERC/tree/master/cube1"
-    },
-    description: (<span>
-      <a href="https://ohif.org/">
-        <em>OHIF</em>
-      </a>{' '}
-      viewer for the <em>pfdcm</em> filesystem cache of CUBE1.
-    </span>),
-    notes: "Keep in mind that this OHIF displays data stored by PFDCM (which is mostly the same as but is not guaranteed to be the same data as CUBE PACSfiles).",
-    host: "NERC (OpenShift)",
-    isChris: false,
-    public: true
-  },
-  {
     url: "https://app.fetalmri.org",
     description: "Fetal MRI dataset browser",
     host: "NERC (OpenShift)",
@@ -153,6 +136,22 @@ const deployments: DeploymentInfo[] = [
       <span>
         I plan to implement a cron job which deletes all users and all user data older than a week,
         excluding special users such as `fnndsc` (admin) and `chrisui` (test user reused in each test run).
+      </span>
+    )
+  },
+  {
+    url: "https://ackee.chrisproject.org",
+    description: "Privacy-friendly web analytics",
+    host: "NERC (OpenShift)",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/tree/master/ackee"
+    },
+    isChris: false,
+    public: true,
+    notes: (
+      <span>
+        Ackee has its own documentation page <Link to="./web_analytics">here</Link>.
       </span>
     )
   },
