@@ -1,5 +1,5 @@
 {
-  "name": "website-2",
+  "name": "chrisproject-org",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -17,7 +17,7 @@
     "fix": "biome check --apply src/",
     "fix:unsafe": "biome check --apply-unsafe src/",
     "fmt": "biome format --write src/",
-    "prepare": "husky install"
+    "prepare": "husky"
   },
   "dependencies": {
     "@docusaurus/core": "3.4.0",
@@ -55,5 +55,6 @@
   },
   "engines": {
     "node": ">=16.14"
-  }
+  },
+  "packageManager": "pnpm@9.6.0+sha1.65cd48c20dd329b7f455088b6dd17d4d5b6d02e3"
 }
