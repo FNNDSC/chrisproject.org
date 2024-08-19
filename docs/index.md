@@ -8,6 +8,12 @@ title: Introduction
 _ChRIS_ is a **container** platform for medical research and compute.
 This documentation is about _ChRIS_ usage, concepts, development, and deployment.
 
+## Concepts
+
+In _ChRIS_, objects called _ChRIS_ plugins represent medical or scientific software.
+_Users_ process data using _ChRIS_ plugins by creating _plugin instances_. A chain of
+_plugin instances_ is called a _feed._ _Feeds_ are how analyses are organized in _ChRIS_.
+
 ## Getting Started
 
 _ChRIS_ is for everyone!
