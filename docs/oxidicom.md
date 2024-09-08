@@ -131,11 +131,12 @@ received DICOMs. When we receive DICOMs from `MGH`, the PACS address is unknown,
 `oxidicom` exports traces to OpenTelemetry collector. There is a span for the association
 (TCP connection from PACS server to send us DICOM objects).
 
-## NATS Messages Protocol
+## Light Oxidicom NotifiKations Encoding
 
 _oxidicom_ sends to _CUBE_ via NATS messages about the progress of DICOM storage.
+The encoding of these messages is called "Light Oxidicom NotifiKations" encoding, or **LONK** for short.
 
-### NATS Subject Convention
+### Oxidicom NATS Subjects
 
 There is a subject for each series. The subject name is
 
@@ -146,7 +147,7 @@ oxidicom.{pacs_name}.{SeriesInstanceUID}.ndicom
 Where `{pacs_name}` is the AE title of the PACS which associated with _oxidicom_, and
 `{SeriesInstanceUID}` is the `SeriesInstanceUID` **but with `.` replaced by `_`**.
 
-### NATS Message Encoding
+### LONK Message Encoding
 
 The messages take the form of a magic byte followed by data. Messages are one of:
 
