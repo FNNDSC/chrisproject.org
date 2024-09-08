@@ -49,7 +49,8 @@ The other variables are either for optional features or performance tuning.
 |----------------------------------|---------------------------------------------------------------------------------------|
 | `OXIDICOM_AMQP_ADDRESS`          | (required) AMQP address of the RabbitMQ used by _CUBE_'s celery workers               |
 | `OXIDICOM_FILES_ROOT`            | (required) Path to where _CUBE_'s storage is mounted                                  |
-| `OXIDICOM_PROGRESS_NATS_ADDRESS` | (optional) NATS server where to send progress messages                                |
+| `OXIDICOM_QUEUE_NAME`            | (optional) RabbitMQ queue name for the celery `register_pacs_series` task             |
+| `OXIDICOM_NATS_ADDRESS`          | (optional) NATS server where to send progress messages                                |
 | `OXIDICOM_PROGRESS_INTERVAL`     | Minimum delay between progress messages. Uses [humantime] syntax, e.g. `5ms`.         |
 | `OXIDICOM_SCP_AET`               | DICOM AE title (PACS pushing to `oxidicom` should be configured to push to this name) |
 | `OXIDICOM_SCP_STRICT`            | Whether receiving PDUs must not surpass the negotiated maximum PDU length.            |
