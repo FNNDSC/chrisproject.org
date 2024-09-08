@@ -63,7 +63,6 @@ The other variables are either for optional features or performance tuning.
 | `OXIDICOM_SCP_UNCOMPRESSED_ONLY` | Only accept native/uncompressed transfer syntaxes                                     |                                                      
 | `OXIDICOM_SCP_PROMISCUOUS`       | Whether to accept unknown abstract syntaxes.                                          |
 | `OXIDICOM_SCP_MAX_PDU_LENGTH`    | Maximum PDU length                                                                    |
-| `OXIDICOM_PACS_ADDRESS`          | PACS server addresses (recommended, see [PACS address configuration])                 |
 | `OXIDICOM_LISTENER_THREADS`      | Maximum number of concurrent SCU clients to handle. (see [Performance Tuning])        |
 | `OXIDICOM_LISTENER_PORT`         | TCP port number to listen on                                                          |
 | `OXIDICOM_VERBOSE`               | Set as `yes` to show debugging messages                                               |
@@ -72,10 +71,9 @@ The other variables are either for optional features or performance tuning.
 | `OTEL_RESOURCE_ATTRIBUTES`       | Resource attributes, e.g. `service.name=oxidicom-test`                                |
 
 [humantime]: https://docs.rs/humantime/2.1.0/humantime/fn.parse_duration.html
-[PACS address configuration]: #pacs-address-configuration
 [Performance Tuning]: #performance-tuning
 
-See [src/settings.rs](https://github.com/FNNDSC/oxidicom/blob/v2.0.0/src/settings.rs) for the source of truth on the table above and default values of optional settings.
+See [src/settings.rs](https://github.com/FNNDSC/oxidicom/blob/master/src/settings.rs) for the source of truth on the table above and default values of optional settings.
 
 ## Performance Tuning
 
@@ -114,17 +112,6 @@ if the PACS sends illegal data (e.g. the wrong number of DICOM instances for a s
 Receiving the same DICOM data more than once will overwrite the existing file in storage,
 and another task to register the series will be sent to _CUBE_'s celery workers. _CUBE_'s
 workers are going to throw an error when this happens. The overall behavior is idempotent.
-
-## PACS Address Configuration
-
-The environment variable `OXIDICOM_PACS_ADDRESS` should be a dictionary of AE titles to their IPv4 sockets
-(IP address and port number).
-
-The PACS server address for a client AE title is used to look up the `NumberOfSeriesRelatedInstances`.
-For example, suppose `OXIDICOM_PACS_ADDRESS={BCH="1.2.3.4:4242"}`. When we receive DICOMs from `BCH`, `oxidicom`
-will do a C-FIND to `1.2.3.4:4242`, asking them what is the `NumberOfSeriesRelatedInstances` for the
-received DICOMs. When we receive DICOMs from `MGH`, the PACS address is unknown, so `oxidicom` will set
-`NumberOfSeriesRelatedInstances=unknown`.
 
 ### Observability
 
