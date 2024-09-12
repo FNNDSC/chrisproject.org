@@ -26,6 +26,7 @@ The other variables are either for optional features or performance tuning.
 | `TOKIO_WORKER_THREADS`           | Number of threads to use for the async runtime                                        |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`    | OpenTelemetry Collector gRPC endpoint                                                 |
 | `OTEL_RESOURCE_ATTRIBUTES`       | Resource attributes, e.g. `service.name=oxidicom-test`                                |
+| `RUST_LOG`                       | Logging verbosity, set `oxidicom=info` to turn on verbose messages.                   |
 
 [humantime]: https://docs.rs/humantime/2.1.0/humantime/fn.parse_duration.html
 [Performance Tuning]: #performance-tuning
