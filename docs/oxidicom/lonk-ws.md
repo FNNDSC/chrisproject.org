@@ -41,7 +41,7 @@ Once connected, _ChRIS\_ui_ subscribes to notifications for DICOM series by send
 And _CUBE_ responds with a confirmation message (`LonkWsSubscription`):
 
 ```json
-{"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"subscription": "subscribed"}}
+{"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"subscribed": true}}
 ```
 
 ### Messages
@@ -85,7 +85,7 @@ _CUBE_ will send to the client at least 4 messages:
 
 ```
 -->  {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "action": "subscribe"}
-<--  {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"subscription": "subscribed"}}
+<--  {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"subscribed": true}}
 <--  {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"ndicom": 1}}
 <--  {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"ndicom": 9}}
 <--  {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"ndicom": 34}}
