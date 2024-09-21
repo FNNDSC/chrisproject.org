@@ -46,7 +46,7 @@ And _CUBE_ responds with a confirmation message (`LonkWsSubscription`):
 
 ### Messages
 
-All JSON messages from CUBE will satisfy the type:
+All JSON messages from CUBE, besides the [unsubscription response](#unsubscribe), will satisfy the type:
 
 ```typescript
 type LonkWsMessage = {
@@ -118,3 +118,16 @@ Notifications for different series might be interleaved, e.g. messages from _CUB
 {"pacs_name": "MyPACS", "SeriesInstanceUID": "1.2.345.67890", "message": {"ndicom": 80}}
 ```
 
+## Unsubscribe
+
+You can unsubscribe from _all_ series notifications by sending a JSON message
+
+```json
+{ "action": "unsubscribe" }
+```
+
+To which _CUBE_ responds:
+
+```json
+{ "message": { "subscribed":  false } }
+```
