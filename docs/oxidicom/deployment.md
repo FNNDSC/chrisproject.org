@@ -22,7 +22,7 @@ The other variables are either for optional features or performance tuning.
 | `OXIDICOM_SCP_MAX_PDU_LENGTH`    | Maximum PDU length                                                                    |
 | `OXIDICOM_LISTENER_THREADS`      | Maximum number of concurrent SCU clients to handle. (see [Performance Tuning])        |
 | `OXIDICOM_LISTENER_PORT`         | TCP port number to listen on                                                          |
-| `OXIDICOM_VERBOSE`               | Set as `yes` to show debugging messages                                               |
+| `OXIDICOM_DEV_SLEEP`             | Duration to sleep between sending [LONK] notifications. **Only useful for development purposes.** |
 | `TOKIO_WORKER_THREADS`           | Number of threads to use for the async runtime                                        |
 | `OTEL_EXPORTER_OTLP_ENDPOINT`    | OpenTelemetry Collector gRPC endpoint                                                 |
 | `OTEL_RESOURCE_ATTRIBUTES`       | Resource attributes, e.g. `service.name=oxidicom-test`                                |
@@ -30,6 +30,7 @@ The other variables are either for optional features or performance tuning.
 
 [humantime]: https://docs.rs/humantime/2.1.0/humantime/fn.parse_duration.html
 [Performance Tuning]: #performance-tuning
+[LONK]: ./lonk.md
 
 See [src/settings.rs](https://github.com/FNNDSC/oxidicom/blob/master/src/settings.rs) for the source of truth on the table above and default values of optional settings.
 
