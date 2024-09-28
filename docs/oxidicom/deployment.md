@@ -47,7 +47,7 @@ Behind the scenes, _oxidicom_ has three components connected by asynchronous cha
 between the writer and registerer. (The reason why we have two thread pools is
 an implementation detail: the Rust ecosystem suffers from a sync/async divide.)
 
-### Message Throttling
+### Message Frequency
 
 Increase the value for `OXIDICOM_PROGRESS_INTERVAL` to decrease the rate of messages.
 Doing so will decrease load on _CUBE_'s ASGI web server and improve _ChRIS\_ui_ performance.
