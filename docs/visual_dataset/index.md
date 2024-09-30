@@ -1,4 +1,4 @@
-# Visual Dataset
+# Visual Datasets
 
 The "Fetal MRI Browser," or more generally known as a "ChRIS Visual Dataset Browser,"
 is a feature of [ChRIS_ui](https://github.com/FNNDSC/ChRIS_ui) which uses

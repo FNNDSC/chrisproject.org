@@ -14,7 +14,7 @@ CUBE access to a specific compute resource. _pfcon_ speaks to _pman_, which is a
 to a call to the compute resource cluster.
 
 Other parts of _ChRIS_ include [pfdcm](https://github.com/FNNDSC/pfdcm),
-[oxidicom](https://github.com/FNNDSC/oxidicom), and [serie](https://github.com/FNNDSC/serie).
+[oxidicom](./oxidicom), and [serie](https://github.com/FNNDSC/serie).
 These components integrate _ChRIS_ with specialized features in the hospital environment,
 e.g. reception of DICOM from PACS and automatic execution of pipelines for clinical analysis.
 

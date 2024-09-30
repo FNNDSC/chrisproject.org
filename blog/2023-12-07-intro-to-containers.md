@@ -1,6 +1,7 @@
 ---
 title: Introduction to Linux Containers for Research
 authors: jennings
+tags: [ fnndsc-workshop ]
 ---
 
 1. Containers are useful for portability
