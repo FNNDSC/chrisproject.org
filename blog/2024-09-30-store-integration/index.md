@@ -24,9 +24,13 @@ Once logged in, click on the Configure the Store button.
 
 2. Configure the Store Settings.
 
+![Screenshot of the config form](./config_1.png)
+
 You'll see some pre-filled values. If you're on the internal network, point your UI to the internal store example. Since you're already authenticated as an admin user, you don't need to configure the admin username and password for the chris-admin website. You can keep it as the default.
 
-![Screenshot of the config form](./config_1.png)
+![Screenshot of the config form](./config_2.png)
+
+
 
 3. Save and Install Plugins.
 
@@ -39,7 +43,7 @@ After clicking Save, your UI should populate with all the available plugins. Cli
 
 If you're not logged in, you'll need to provide the username and password for the chris-admin website in the configuration form. For a local setup, use chris for the username and chris1234 for the password. Additionally, ensure the compute resource input box is correctly set. In this example, the compute resource is named argentum. Click Save to install plugins without logging in.
 
-![Screenshot of the config form for unauthenticated users](./config_2.png)
+![Screenshot of the config form for unauthenticated users](./unauthenticated.png)
 
 
 This configuration also applies to non-admin users.
