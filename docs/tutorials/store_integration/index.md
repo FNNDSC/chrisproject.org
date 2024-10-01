@@ -1,4 +1,4 @@
-### How to fetch Plugins via a Store
+# How to fetch Plugins via a Store in the UI
 
 When you install ChRIS using miniChRIS Docker, you might find that you need additional plugins for your projects. The ChRIS Store is a centralized repository where you can discover and install plugins directly into your local ChRIS instance. This tutorial will show you how to:
 
