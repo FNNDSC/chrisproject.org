@@ -5,7 +5,7 @@ toc_max_heading_level: 3
 ---
 
 This guide will show you how to convert (almost) any existing Python program into a
-[_ChRIS_ _ds_ plugin](../chris_plugins#ds-type-plugins)!
+[_ChRIS_ _ds_ plugin](../plugins#ds-type-plugins)!
 It's easier done than said.
 
 :::tip

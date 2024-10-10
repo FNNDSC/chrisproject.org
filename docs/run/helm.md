@@ -168,7 +168,7 @@ helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
 
 ### Superuser Creation
 
-A [superuser](../glossary.md#Superuser) is created automatically for system use.
+A [superuser](../glossary.md#superuser) is created automatically for system use.
 Its password can be specified as a value, for example
 
 ```shell

@@ -90,7 +90,7 @@ Use [chrisomatic](https://github.com/FNNDSC/chrisomatic) to upload a list of plu
 ## Automatic Plugin Upload
 
 _ChRIS_ plugin GitHub repositories can be configured to be automatically uploaded
-using [GitHub Actions](../../chris_plugins/github_actions.md).
+using [GitHub Actions](../../plugins/github_actions.md).
 
 ## Non-canonical methods
 

@@ -24,8 +24,8 @@ const FeatureList: FeatureItem[] = [
         </a>{" "}
         which includes an optimized <code>Dockerfile</code>. By automating the
         boring stuff using{" "}
-        <Link to="/docs/chris_plugins/github_actions">GitHub Actions</Link>,
-        bringing your science to the multi-cloud has never been easier.
+        <Link to="/docs/plugins/github_actions">GitHub Actions</Link>, bringing
+        your science to the multi-cloud has never been easier.
       </>
     ),
   },
