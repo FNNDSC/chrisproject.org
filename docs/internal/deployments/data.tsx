@@ -140,6 +140,20 @@ const deployments: DeploymentInfo[] = [
     )
   },
   {
+    url: "https://blt.chrisproject.org",
+    description: "(WIP) boston-London-Toronto collaboration project",
+    host: "NERC (OpenShift)",
+    src: {
+      type:SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/tree/master/blt",
+    },
+    isChris: true,
+    public: true,
+    notes: (
+      <span>WIP</span>
+    )
+  },
+  {
     url: "https://ackee.chrisproject.org",
     description: "Privacy-friendly web analytics",
     host: "NERC (OpenShift)",
