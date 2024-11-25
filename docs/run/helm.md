@@ -166,28 +166,7 @@ helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
      --set cube.server.service.nodePortHost=$(hostname)
 ```
 
-### Superuser Creation
-
-A [superuser](../glossary.md#superuser) is created automatically for system use.
-Its password can be specified as a value, for example
-
-```shell
-helm upgrade --install --reuse-values chris fnndsc/chris \
-     --set chris_admin.username=christopher \
-     --set chris_admin.email=christopher@example.org \
-     --set chris_admin.password=H4RD2GUE2234
-```
-
-If it is necessary to reset this superuser's password, simply restart the "heart" deployment.
-
-```shell
-kubectl rollout restart deployment -l app.kubernetes.io/name=chris-heart
-```
-
 ### _ChRISomatic_
 
 TODO
 
-## See Also
-
-Related blog post: [Django Superuser Creation using Helm](/blog/2023/10/06/django-superuser-helm)
