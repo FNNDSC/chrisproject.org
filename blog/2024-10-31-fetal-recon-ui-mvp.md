@@ -14,3 +14,10 @@ https://github.com/FNNDSC/fetal-recon-ui-mvp
 
 <!--truncate-->
 
+:::note
+
+The clinical data in this video are fake, and the image data are publicly available.
+https://github.com/FNNDSC/fetal_t2mri_dicoms
+
+:::
+
