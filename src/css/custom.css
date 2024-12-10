@@ -4,36 +4,34 @@
  * work well for content-centric websites.
  */
 
-@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600;700&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Overpass:wght@200;300;400;600;700&display=swap");
 
 /* You can override the default Infima variables here. */
 
 /* Blue theme from https://www.patternfly.org/design-foundations/colors#color-palette */
 :root {
-  --ifm-color-primary: #0066CC;
+  --ifm-color-primary: #0066cc;
   --ifm-color-primary-dark: #004080;
   --ifm-color-primary-darker: #002952;
   --ifm-color-primary-darkest: #001223;
-  --ifm-color-primary-light: #2B9AF3;
-  --ifm-color-primary-lighter: #73BCF7;
-  --ifm-color-primary-lightest: #BEE1F4;
+  --ifm-color-primary-light: #2b9af3;
+  --ifm-color-primary-lighter: #73bcf7;
+  --ifm-color-primary-lightest: #bee1f4;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
-  --ifm-color-primary: #2B9AF3;
-  --ifm-color-primary-dark: #0066CC;
+[data-theme="dark"] {
+  --ifm-color-primary: #2b9af3;
+  --ifm-color-primary-dark: #0066cc;
   --ifm-color-primary-darker: #004080;
   --ifm-color-primary-darkest: #002952;
-  --ifm-color-primary-light: #73BCF7;
-  --ifm-color-primary-lighter: #BEE1F4;
-  --ifm-color-primary-lightest: #E7F1FA;
+  --ifm-color-primary-light: #73bcf7;
+  --ifm-color-primary-lighter: #bee1f4;
+  --ifm-color-primary-lightest: #e7f1fa;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
-
 
 h1,
 h2,
@@ -41,33 +39,31 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Overpass, -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: Overpass, -apple-system, system-ui, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
-
-
 
 .container-of-same-height-cards .card {
   height: 100%;
 }
 
 /* https://docusaurus.io/docs/markdown-features/assets#github-style-themed-images */
-[data-theme='light'] img[src$='#gh-dark-mode-only'],
-[data-theme='dark'] img[src$='#gh-light-mode-only'] {
+[data-theme="light"] img[src$="#gh-dark-mode-only"],
+[data-theme="dark"] img[src$="#gh-light-mode-only"] {
   display: none;
 }
 
-
 /* Configuration of react-medium-image-zoom */
 
-[data-theme='dark'] .dark-zoom [data-rmiz-modal-overlay="hidden"] {
+[data-theme="dark"] .dark-zoom [data-rmiz-modal-overlay="hidden"] {
   background-color: rgba(0, 0, 0, 0);
 }
-[data-theme='dark'] .dark-zoom [data-rmiz-modal-overlay="visible"] {
+[data-theme="dark"] .dark-zoom [data-rmiz-modal-overlay="visible"] {
   background-color: rgba(15, 15, 15, 1);
 }
 
 /* configuration of flexanalytics/plugin-image-zoom */
 
-[data-theme='dark'] .medium-zoom-overlay {
+[data-theme="dark"] .medium-zoom-overlay {
   background-color: rgba(15, 15, 15, 1) !important;
 }

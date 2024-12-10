@@ -10,7 +10,12 @@
   color: white;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 300;
 }
 
@@ -26,7 +31,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 3000;
 }
 
-
 .jumbotron {
   margin: 3rem 0;
 }
@@ -36,7 +40,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #4185ca;
 }
 
-[data-theme='dark'] .blueBackground  {
+[data-theme="dark"] .blueBackground {
   background: #275584;
 }
 
@@ -45,7 +49,7 @@ h1, h2, h3, h4, h5, h6 {
   background: #275584;
 }
 
-[data-theme='dark'] .darkBlueBackground  {
+[data-theme="dark"] .darkBlueBackground {
   background: #1f4265;
 }
 

@@ -1,11 +1,10 @@
 /* Bad-ish hacks to make things work */
 
-
 /* fix button--outline color on dark background for light theme */
 .button.button--outline.fix-on-dark-bg:not(:hover) {
-    color: white !important;
+  color: white !important;
 }
 
 .button.button--outline.fix-on-dark-bg:hover {
-    color: black !important;
+  color: black !important;
 }
