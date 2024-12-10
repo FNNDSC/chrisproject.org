@@ -9,7 +9,9 @@ This page is for an upcoming release of _ChRIS_.
 
 ::::
 
-_ChRIS\_ui_ can be deployed as a container image. For example, using Docker or Podman:
+_ChRIS\_ui_ can be deployed as a container image.
+
+## Using Docker or Podman
 
 ```shell
 docker run --rm -it -p 8080:80 \
@@ -17,6 +19,57 @@ docker run --rm -it -p 8080:80 \
     -e PFDCM_URL="http://$(hostname):4005/" \
     ghcr.io/fnndsc/chris_ui:staging
 ```
+
+## Using Helm
+
+```yaml
+helm repo add fnndsc https://fnndsc.github.io/charts
+helm update repo fnndsc
+helm update --install --create-namespace --namespace chris \
+  --set cubeUrl=https://cube.example.org/api/v1/ \
+  --set pfdcmUrl=https://pfdcm.example.org \
+  --generate-name fnndsc/chris-ui
+```
+
+### Using Helmfile
+
+[Helmfile](https://github.com/helmfile/helmfile) is strongly recommended over the official Helm CLI.
+
+```yaml
+repositories:
+  - name: fnndsc
+    url: https://fnndsc.github.io/charts
+
+releases:
+  - name: chris-ui
+    namespace: chris
+    chart: fnndsc/chris-ui
+    version: "1.0.0-alpha.2"
+    values:
+      - cubeUrl: https://cube.example.org/api/v1/
+        pfdcmUrl: https://pfdcm.example.org
+```
+
+### Using KNative
+
+By default, the `fnndsc/chris-ui` chart will create a Deployment, Service, and optionally a HorizontalPodAutoscaler
+using ordinary Kubernetes APIs. If [KNative Serving](https://knative.dev/docs/serving/) or
+[Red Hat OpenShift Serverless](https://docs.openshift.com/serverless/) is available in your Kubernetes cluster,
+you may prefer to use it instead. Use these values for `fnndsc/chris-ui`:
+
+```yaml
+kind: Service
+
+# optional
+revisionAnnotations:
+  autoscaling.knative.dev/target: "100"
+  autoscaling.knative.dev/min-scale: "1"
+  autoscaling.knative.dev/max-scale: "3"
+```
+
+Consult the upstream documentation on [configuring custom domains](https://knative.dev/docs/serving/services/custom-domains/).
+
+## Image Tags
 
 Images are built automatically by [GitHub Actions](https://github.com/FNNDSC/ChRIS_ui/actions/workflows/build.yml)
 for every push to the master and staging branches, as well as PRs targeting those branches.

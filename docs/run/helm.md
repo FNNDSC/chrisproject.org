@@ -134,24 +134,55 @@ cube:
     AUTH_LDAP: "false"
 ```
 
-## What's Included?
+### External PostgreSQL
 
-The `chris` chart gives you:
+It may be advantageous to use a pre-existing PostgreSQL instead of the bundled bitnamicharts/postgresql chart.
+E.g. you may want to use `postgresql-ha` or a PostgreSQL operator (PGO) instead.
+To use an external PostgreSQL, set the values
 
-- The [_ChRIS_ backend server](https://github.com/FNNDSC/ChRIS_ultron_backEnd)
-- [pfcon](https://github.com/FNNDSC/pfcon), a compute provider for the _ChRIS_ backend
-- [pfdcm](https://github.com/FNNDSC/pfdcm), a PACS to _ChRIS_ connector
-- [oxidicom](https://github.com/FNNDSC/oxidicom), a DICOM receiver for the _ChRIS_ backend
-- (optional) [Orthanc](https://www.orthanc-server.com/), an open-source PACS server
+```yaml
+postgresql:
+  enabled: false  # disable bundled postgresql subchart
 
-### What's not included?
-
-- Front-ends: please install [ChRIS_ui](https://github.com/FNNDSC/ChRIS_ui)
-- Plugins: browse our catalog and install them from https://app.chrisproject.org/catalog
-- :warning: Database backups :warning:
-- High-availability (HA), autoscaling
+postgresSecret:
+  # specify secret containing PostgreSQL connection parameters
+  name: my-existing-postgresql
+  isCrunchy: false  # <-- set as `true` if using Crunchy PGO.
+```
 
 ## Tips and Tricks
+
+### Helmfile
+
+We strongly recommend using [Helmfile](https://helmfile.readthedocs.io) instead of using Helm directly.
+
+Here is an example of a `helmfile.yaml` for installing both `fnndsc/chris` (backend) and `fnndsc/chris-ui` (frontend):
+
+```yaml
+repositories:
+  - name: fnndsc
+    url: https://fnndsc.github.io/charts
+
+helmDefaults:
+  createNamespace: false  # necessary on OpenShift
+
+releases:
+  - name: chris
+    namespace: chris
+    chart: fnndsc/chris
+    version: "1.0.0-alpha.2"
+    values:
+      - ./chris-values.yaml
+      - cube:
+          secrets:
+            AUTH_LDAP_BIND_PASSWORD: {{ fetchSecretValue "ref+k8s://v1/Secret/chris/ldapservice/bind-password" | quote }}
+  - name: chris-ui
+    namespace: chris
+    chart: fnndsc/chris-ui
+    version: "1.0.0-alpha.2"
+    values:
+      - ./chris-ui-values.yaml
+```
 
 ### Use NodePort
 
@@ -170,3 +201,8 @@ helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
 
 TODO
 
+## Next Steps
+
+- Configure **backups** for your PostgreSQL database.
+- Install [_ChRIS\_ui_](./chris_ui.md), the _ChRIS_ user interface.
+- Consider setting up [Authentik](/docs/admin/authentik-ldap.md) for a better user and group management experience.
