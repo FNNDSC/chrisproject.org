@@ -69,13 +69,11 @@ helm upgrade --install --create-namespace --namespace chris --values values.yaml
 To uninstall the chart:
 
 ```shell
-helm delete --namespace chris chris-prod
-```
+helm uninstall --namespace chris chris-prod
 
-Finally, to nuke everything:
-
-```shell
-kubectl delete namespace chris
+# by default, PersistentVolumeClaims (pvc) created by StatefulSets of the
+# bitnami subcharts are not deleted, so delete them manually.
+kubectl delete -n chris pvc -l app.kubernetes.io/instance=chris-prod
 ```
 
 ## Special Cases
