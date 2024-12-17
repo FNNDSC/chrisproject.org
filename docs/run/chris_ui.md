@@ -28,7 +28,7 @@ helm update repo fnndsc
 helm upgrade --install --create-namespace --namespace chris \
   --set cubeUrl=https://cube.example.org/api/v1/ \
   --set pfdcmUrl=https://pfdcm.example.org \
-  --generate-name fnndsc/chris-ui
+  chris-ui fnndsc/chris-ui
 ```
 
 ### Using Helmfile
