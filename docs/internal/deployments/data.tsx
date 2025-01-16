@@ -141,10 +141,10 @@ const deployments: DeploymentInfo[] = [
   },
   {
     url: "https://blt.chrisproject.org",
-    description: "(WIP) boston-London-Toronto collaboration project",
+    description: "Boston-London-Toronto collaboration project",
     host: "NERC (OpenShift)",
     src: {
-      type:SrcType.GitHub,
+      type: SrcType.GitHub,
       value: "https://github.com/FNNDSC/NERC/tree/master/blt",
     },
     isChris: true,
@@ -152,6 +152,48 @@ const deployments: DeploymentInfo[] = [
     notes: (
       <span>WIP</span>
     )
+  },
+  {
+    url: "https://cube.blt.chrisproject.org",
+    description: "Boston-London-Toronto collaboration project backend",
+    host: "NERC (OpenShift)",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/tree/master/blt",
+    },
+    isChris: true,
+    public: true,
+    notes: (
+      <span>WIP</span>
+    )
+  },
+  {
+    url: "https://auth.blt.chrisproject.org",
+    description: "Identify provider and LDAP for BLT collaboration project",
+    host: "NERC (OpenShift)",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/blob/master/blt/authentik-values.yaml",
+    },
+    isChris: false,
+    public: true,
+    notes: (
+      <span>
+        Documentation:
+        <Link to="/docs/internal/blt/user_management">user management</Link>
+      </span>
+    )
+  },
+  {
+    url: "https://blt-orthanc.apps.shift.nerc.mghpcc.org",
+    src: {
+      type: SrcType.GitHub,
+      value: "https://github.com/FNNDSC/NERC/blob/master/blt/chris-values.yaml"
+    },
+    description: "Orthanc PACS server for BLT collaboration project",
+    host: "NERC (OpenShift)",
+    isChris: false,
+    public: true
   },
   {
     url: "https://ackee.chrisproject.org",
@@ -170,8 +212,42 @@ const deployments: DeploymentInfo[] = [
     )
   },
   {
+    url: "http://chris.tch.harvard.edu",
+    description: (
+      <span>
+        <em>Staging</em> BCH internal ChRIS_ui.
+      </span>
+    ),
+    host: "argentum (Kubernetes)",
+    src: {
+      type: SrcType.Path,
+      value: "/neuro/labs/grantlab/research/prod/argentum/deployments/chris/chris-ui-values.yaml"
+    },
+    isChris: true,
+    public: false
+  },
+  {
+    url: "http://chris.tch.harvard.edu:3223/api/v1/",
+    description: (
+      <span>
+        <em>Staging</em> BCH internal ChRIS backend.
+      </span>
+    ),
+    host: "argentum (Kubernetes)",
+    src: {
+      type: SrcType.Path,
+      value: "/neuro/labs/grantlab/research/prod/argentum/deployments/chris/chris-values.yaml"
+    },
+    isChris: true,
+    public: false
+  },
+  {
     url: "http://chris-next.tch.harvard.edu",
-    description: "BCH internal ChRIS_ui",
+    description: (
+      <span>
+        <em>Decommissioned</em> BCH internal ChRIS_ui.
+      </span>
+    ),
     host: "chris-next (docker-compose)",
     src: {
       type: SrcType.Path,
@@ -184,7 +260,7 @@ const deployments: DeploymentInfo[] = [
     url: "http://rc-live.tch.harvard.edu:32000/api/v1/",
     description: (
       <span>
-        BCH internal CUBE. <b>Very outdated</b>
+        <em>Decommissioned</em> BCH internal CUBE.
       </span>
     ),
     host: "galena (Kubernetes)",
@@ -199,7 +275,7 @@ const deployments: DeploymentInfo[] = [
     url: "http://rc-live.tch.harvard.edu:32222/api/v1/",
     description: (
       <span>
-        <em>New</em> BCH internal "high-performance" CUBE, i.e. innetwork
+        <em>Stable</em> BCH internal "high-performance" CUBE, i.e. innetwork
         filesystem pfcon.
       </span>
     ),
@@ -215,7 +291,7 @@ const deployments: DeploymentInfo[] = [
     url: "http://chris-next.tch.harvard.edu:2222",
     description: (
       <span>
-        <em>New</em> BCH internal ChRIS_ui for the "high-performance" CUBE.
+        <em>Stable</em> BCH internal ChRIS_ui for the "high-performance" CUBE.
       </span>
     ),
     host: "chris-next (docker-compose)",
