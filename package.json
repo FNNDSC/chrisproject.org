@@ -20,26 +20,26 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@docusaurus/core": "3.6.3",
-    "@docusaurus/preset-classic": "3.6.3",
+    "@docusaurus/core": "3.7.0",
+    "@docusaurus/preset-classic": "3.7.0",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
     "plugin-image-zoom": "github:flexanalytics/plugin-image-zoom",
-    "prism-react-renderer": "^2.4.0",
-    "react": "^18.3.1",
+    "prism-react-renderer": "^2.4.1",
+    "react": "^19.0.0",
     "react-data-table-component": "^7.6.2",
-    "react-dom": "^18.3.1",
+    "react-dom": "^19.0.0",
     "react-feather": "^2.0.10",
-    "react-medium-image-zoom": "^5.2.12",
-    "styled-components": "^6.1.13",
+    "react-medium-image-zoom": "^5.2.13",
+    "styled-components": "^6.1.14",
     "use-ackee": "^3.1.0"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
-    "@docusaurus/module-type-aliases": "3.6.3",
+    "@docusaurus/module-type-aliases": "3.7.0",
     "@tsconfig/docusaurus": "^2.0.3",
     "husky": "^9.1.7",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.3"
   },
   "browserslist": {
     "production": [
