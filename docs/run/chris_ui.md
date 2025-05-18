@@ -24,7 +24,7 @@ docker run --rm -it -p 8080:80 \
 
 ```yaml
 helm repo add fnndsc https://fnndsc.github.io/charts
-helm update repo fnndsc
+helm repo update fnndsc
 helm upgrade --install --create-namespace --namespace chris \
   --set cubeUrl=https://cube.example.org/api/v1/ \
   --set pfdcmUrl=https://pfdcm.example.org \

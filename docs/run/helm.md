@@ -163,12 +163,13 @@ repositories:
 
 helmDefaults:
   createNamespace: false  # necessary on OpenShift
+  diffArgs: [ --dry-run=server ]  # required for lookup function to work
 
 releases:
   - name: chris
     namespace: chris
     chart: fnndsc/chris
-    version: "1.0.0-alpha.2"
+    version: "1.0.2"
     values:
       - ./chris-values.yaml
       - cube:
@@ -177,10 +178,12 @@ releases:
   - name: chris-ui
     namespace: chris
     chart: fnndsc/chris-ui
-    version: "1.0.0-alpha.2"
+    version: "1.0.0"
     values:
       - ./chris-ui-values.yaml
 ```
+
+Refer to our production manifests in our [FNNDSC/NERC GitHub repository](https://github.com/FNNDSC/NERC/blob/master/blt/helmfile.d/02-chris.yaml) for up-to-date examples.
 
 ### Use NodePort
 
