@@ -3,6 +3,15 @@ title: Installation
 sidebar_position: 1
 ---
 
+:::danger
+
+`chrs` is now obsolete. It only works with outdated versions of _ChRIS_ backend,
+the latest supported version being [5.1.0](https://github.com/FNNDSC/ChRIS_ultron_backEnd/releases/tag/v5.1.0).
+These documentation remain as a design reference for the future development of
+an updated _ChRIS_ CLI client.
+
+:::
+
 `chrs` is easy to install, and works on many platforms.
 
 ## Direct Download
