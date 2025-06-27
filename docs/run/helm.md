@@ -30,6 +30,7 @@ third-party repositories to create Kubernetes resources, such as services and de
 - [`kubectl`](https://kubernetes.io/docs/reference/kubectl/) for Kubernetes, or
   `oc` for OpenShift. Make sure you are logged in
 - Helm v3.8 or above: https://helm.sh/docs/intro/install/
+- [Helmfile](#helmfile) (optional, recommended)
 
 ## Installation
 
@@ -88,23 +89,28 @@ may require that all (stateful) containers run as a user with a specific UID. Th
 ### RWO Volume Workarounds
 
 It is strongly recommended to use `ReadWriteMany` volumes. If your storage class can only provide
-`ReadWriteOnce` (RWO) volumes, then you need to do two workarounds.
+`ReadWriteOnce` (RWO) volumes, then you need to do configure everything to run on one node:
 
-When installing `fnndsc/chris` set the value `cube.enablePodAffinityWorkaround=true`
+```yaml
+cube:
+  enablePodAffinityWorkaround: true
 
-```shell
-helm install --set cube.enablePodAffinityWorkaround=true chris-one fnndsc/chris
+pfcon:
+  nodeSelector: &NODE_SELECTOR
+    kubernetes.io/hostname: worker-1
+  pman:
+    extraEnv:
+      NODE_SELECTOR: 'kubernetes.io/hostname=worker-1'
+
+pfdcm:
+  nodeSelector: *NODE_SELECTOR
 ```
 
-Once `chris-one` is installed, you need to reconfigure `pman` to use the node which
-everything is running on. In the example below, we are using `oc` instead of `kubectl`.
+:::warning
 
-```shell
-selector='-l app.kubernetes.io/name=pfcon -l app.kubernetes.io/instance=chris-one'
-node=$(oc get pod -o jsonpath='{.items[0].spec.nodeName}' $selector)
-helm upgrade --reuse-values chris-one fnndsc/chris --set pfcon.pman.config.NODE_SELECTOR=kubernetes.io/hostname=$node
-oc rollout restart deployment $selector
-```
+If the node `worker-1` crashes, you will need to reconfigure `values.yaml` to restore service to _ChRIS_.
+
+:::
 
 ### Reverse Proxy for HTTPS
 
@@ -197,10 +203,6 @@ helm upgrade --install --create-namespace --namespace chris chris fnndsc/chris \
      --set cube.server.service.nodePort=32000 \
      --set cube.server.service.nodePortHost=$(hostname)
 ```
-
-### _ChRISomatic_
-
-TODO
 
 ## Next Steps
 
