@@ -5,7 +5,7 @@ It's not particularly convenient, but it is simple and cheap.
 
 How to use Swift on NERC is described here:
 
-https://nerc-project.github.io/nerc-docs/openstack/advanced-openstack-topics/persistent-storage/object-storage/
+https://nerc-project.github.io/nerc-docs/openstack/persistent-storage/object-storage/
 
 My recommendation is to use [`rclone`](https://rclone.org).
 
