@@ -1,0 +1,289 @@
+---
+title: "Advantages of Rust for Orthanc Plugin Development"
+authors: jennings
+tags: [rust, orthanc]
+---
+
+import ORTHANC_LOGO from './OrthancLogo-2016.png';
+import RustLogo from './rust-logo-blk.svg';
+import styles from './styles.module.css';
+
+<div className={styles.flex}>
+  <img src={ORTHANC_LOGO} alt="Orthanc Logo" width="400" />
+  <div className={styles.plus} />
+  <RustLogo className={styles.svgLogo} />
+</div>
+
+
+[Orthanc](https://orthanc.uclouvain.be/) is an open-source
+[PACS](https://en.wikipedia.org/wiki/Picture_archiving_and_communication_system)
+server written in C++ with an extensive interface for plugin development.
+Here we announce [orthanc_sdk](https://crates.io/crates/orthanc_sdk), a
+library for developing Orthanc plugins in safe and
+[idiomatic](https://rust-unofficial.github.io/patterns/idioms/) Rust.
+This article explains why Rust is a good language for Orthanc plugin development
+and the design of the `orthanc_sdk` crate.
+
+<!-- truncate -->
+
+## Background
+
+Orthanc is a lightweight and open-source PACS: a database of medical
+images implementing the Digital Imaging and Communication in Medicine
+([DICOM](https://en.wikipedia.org/wiki/DICOM)) protocol. Plugins for
+Orthanc extend its features in flexible ways, e.g. to add support for
+custom S3 storage, or to implement clinical automations by handling
+on change events.
+
+Orthanc is amazing: it is well-known by most people in the medical imaging
+and informatics communities. On the other hand, the
+[Rust](https://www.rust-lang.org/) programming language is not that popular
+(yet) in our field. But it should be! Rust is best known for its performance.
+Considering Orthanc's goal of being lightweight and to support low-end hardware,
+Rust is a great choice for writing Orthanc plugins.
+
+Additionally, Rust emphasizes software reliability. Although this aspect is
+sometimes overshadowed to users by its impressive performance, many Rust
+developers would say that the type system is just as important if not more.
+Rust code is
+[easier to maintain](https://opensource.googleblog.com/2023/06/rust-fact-vs-fiction-5-insights-from-googles-rust-journey-2022.html),
+which is particularly relevant to academia where there is a tendency for projects
+to be abandoned the moment their authors finish their Ph.D. or postdoc and move on.
+
+In this article I will explain the concepts of [orthanc_sdk](https://crates.io/crates/orthanc_sdk)
+and how the language features of Rust facilitate
+[safety](https://en.wikipedia.org/wiki/Memory_safety) when interoperating with
+C interfaces
+and [correctness](https://en.wikipedia.org/wiki/Correctness_(computer_science))
+of API design.
+Performance, reliability, or easy to develop? Pick three.
+
+## Memory Safety
+
+Most third-party Orthanc plugins are developed using Python which, quoting the
+[official documentation](https://orthanc.uclouvain.be/book/plugins/python.html),
+can be preferable to &ldquo;the more complex C/C++ programming languages.&rdquo;
+Python is an interpreted language with automatic memory management. It needs to
+do a lot of work at runtime (parsing syntax and
+[garbage collection](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))),
+which explains why it is so [slow](https://haslab.github.io/SAFER/scp21.pdf).
+Rust does the same work but at compile time instead, leading to its performance.
+
+C/C++ leaves memory management to the responsibility of the programmer. Indeed,
+the Orthanc plugin SDK documentation often says things like:
+
+> `answerBody`: The target memory buffer (out argument). It must be freed with
+> [`OrthancPluginFreeMemoryBuffer()`](https://orthanc.uclouvain.be/sdk/group__Toolbox.html#gaac0c60299ca5fa74d3c76b6cbdc3c930).
+
+Manual memory management is an easy source of bugs that can crash the program at
+best, or even security vulnerabilities at worst. Last year, the U.S. White House
+even published a
+[press release](https://bidenwhitehouse.archives.gov/oncd/briefing-room/2024/02/26/press-release-technical-report/)
+urging the adoption of memory-safe programming languages.
+
+`orthanc_sdk` wraps internal [FFI](https://en.wikipedia.org/wiki/Foreign_function_interface)
+calls to Orthanc so that memory is freed automatically by implementing
+the [Drop](https://doc.rust-lang.org/rust-by-example/trait/drop.html) trait.
+
+```rust
+// RestResponse<D> wraps the output of `OrthancPluginCallRestApi()`.
+impl<D> Drop for RestResponse<D> {
+    fn drop(&mut self) {
+        // free_memory_buffer is a wrapper for `OrthancPluginFreeMemoryBuffer()`.
+        unsafe { free_memory_buffer(self.context, self.buffer) }
+    }
+}
+```
+
+Rust's [Drop](https://doc.rust-lang.org/rust-by-example/trait/drop.html) trait
+is similar in concept to Python
+[context managers](https://docs.python.org/3/library/stdtypes.html#typecontextmanager)
+(i.e. `with` block syntax).
+
+```python
+with open('file.txt') as f:
+    data = f.read()
+
+# at the end of the indentation block, f.close() will be called implicitly.
+```
+
+Unlike Python context managers, the Rust compiler can know to call `.drop()`
+the instant the variable goes out-of-scope. This eliminates the need for `with`
+keyword usage and excessive indentation levels, keeping Rust code clean.
+It also makes CPU and memory usage more predictable, keeping system resource
+utilization low while avoiding [gc thrash](https://en.wikipedia.org/wiki/Thrashing_(computer_science)#Heap_thrashing).
+
+## API Type-Safety
+
+Orthanc assigns each resource a random [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier).
+Regardless of whether it's for a patient, study, series, job, etc.,
+Orthanc IDs all look the same. The crate [orthanc_api](https://crates.io/crates/orthanc_api)
+(which is re-exported by [orthanc_sdk](https://crates.io/crates/orthanc_sdk)) distinguishes
+between
+[PatientId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.PatientId.html),
+[StudyId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.StudyId.html),
+[SeriesId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.SeriesId.html),
+[InstanceId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.InstanceId.html),
+[JobId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.JobId.html),
+and [QueryId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.QueryId.html)
+types using the [newtype pattern](https://doc.rust-lang.org/rust-by-example/generics/new_types.html).
+When making API calls it is impossible to mix up what is what, e.g. the compiler
+will stop you from trying to call a patients-related API with a `JobId`.
+(Instead, it makes it easy and type-safe to get the
+[Patient](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.Patient.html)
+_of_ a
+[ResourceModification](https://docs.rs/orthanc_api/0.0.2/orthanc_api/enum.ResourceModificationContent.html)-type
+[job](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.JobInfo.html).)
+
+ID types are related to their detailed types via the
+[ResourceId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/trait.ResourceId.html)
+trait, e.g. [JobId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.JobId.html)
+is [associated with](https://docs.rs/orthanc_api/0.0.2/src/orthanc_api/types.rs.html#27)
+the API endpoint `/jobs/{id}` which is denoted to return
+type [JobInfo](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.JobInfo.html).
+
+### Static Typing of `RequestedTags`
+
+[DicomResourceId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/trait.DicomResourceId.html)
+e.g. 
+[PatientId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.PatientId.html),
+[StudyId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.StudyId.html),
+[SeriesId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.SeriesId.html),
+and [InstanceId](https://docs.rs/orthanc_api/0.0.2/orthanc_api/struct.InstanceId.html),
+can be retrieved from the Orthanc API with a parameter `requested-tags` to indicate
+which DICOM tags to list in the response. For example:
+
+```
+GET /series/801c56c0-9d21d0f9-2f29f815-e9978a5d-4293b5a3?requested-tags=ProtocolName;Modality
+```
+
+Might return:
+
+```json
+{
+    "ExpectedNumberOfInstances": null,
+    "ID": "801c56c0-9d21d0f9-2f29f815-e9978a5d-4293b5a3",
+    "Instances": [
+        "04fa7506-7b8322c5-e54592ac-b451c97a-95538c93",
+        "0ddacd01-7bb614c0-d5400253-2a2a551e-0d14755c",
+        "12a50c31-432b0592-65bb9048-5243ce9f-b3c3da0f",
+    ],
+    "IsStable": true,
+    "Labels": [],
+    "LastUpdate": "20250721T173227",
+    "MainDicomTags": {
+        "BodyPartExamined": "FOOT",
+        "ImageOrientationPatient": "0.00000\\1.00000\\0.00000\\0.00000\\0.00000\\-1.00000",
+        "Manufacturer": "TOSHIBA",
+        "Modality": "CT",
+        "ProtocolName": "ANKLE/FOOT 3mm",
+        "SeriesDate": "19591127",
+        "SeriesDescription": "Sft Tissue Sagittal 3.0 Sagittal",
+        "SeriesInstanceUID": "1.2.276.0.7230010.3.1.3.1493828352.1.1753119146.667883",
+        "SeriesNumber": "9",
+        "SeriesTime": "095342.746"
+    },
+    "ModifiedFrom": "5c5691ae-85ba4fd5-7e58d690-a1394370-2872cd52",
+    "ParentStudy": "11231bb6-426dbf6b-69897722-7ebab601-bd2c626c",
+    "RequestedTags": {
+        "ProtocolName": "ANKLE/FOOT 3mm",
+        "Modality": "CT"
+    },
+    "Status": "Unknown",
+    "Type": "Series"
+}
+```
+
+`RequestedTags` in the response has a dynamic schema, though we can define a static
+type for what keys we expect to be present.
+
+```rust
+use orthanc_sdk::api::DicomClient;
+use orthanc_sdk::api::types::{RequestedTags, Series, SeriesId};
+use orthanc_sdk::bindings;
+
+fn get_protocol_and_modality(context: *mut bindings::OrthancPluginContext, id: SeriesId) {
+    let client = DicomClient::new(context);
+    let series: Series<Details> = client.get(id).unwrap();
+    let details = series.requested_tags;
+    println!(
+        "ProtocolName={:?} and Modality={}",
+        details.protocol_name, details.modality
+    );
+}
+
+/// `RequestedTags` response type.
+#[derive(serde::Deserialize, Debug)]
+struct Details {
+    /// ProtocolName of a series. The tag might not have a value, so it is [Option].
+    #[serde(rename = "ProtocolName")]
+    protocol_name: Option<String>,
+
+    /// Modality of a series. Suppose in this case we require there to be a value.
+    #[serde(rename = "Modality")]
+    modality: String,
+}
+
+impl RequestedTags for Details {
+    fn names() -> &'static [&'static str] {
+        // specify value of `?requested-tags=<...>` in the URI query
+        &["ProtocolName", "Modality"]
+    }
+}
+```
+
+In the example above, `client.get(id)` knows you want `ProtocolName` and `Modality`
+because it is specified by the type `Series<Details>`.
+
+## API Response Data Types
+
+Thanks to Orthanc's [OpenAPI specification](https://orthanc.uclouvain.be/api/),
+it was possible to automatically generate type definitions for most API request
+and response models as well as an HTTP client library using
+[OpenAPI generator](https://openapi-generator.tech). This library is published
+as [orthanc_client_ogen](https://crates.io/crates/orthanc_client_ogen) on
+[crates.io](https://crates.io).
+
+Orthanc's OpenAPI specification is incomplete and some response types are untyped.
+Such is the case for the response from `/jobs/{id}`.
+Hand-written type definitions supplementing the automatically generated OpenAPI
+models are provided in another crate called [orthanc_api](https://crates.io/crates/orthanc_api).
+Its manually coded models take advantage of [serde enum representations](https://serde.rs/enum-representations.html)
+to deserialize the complex response body from `/jobs/{id}` as Rust enums.
+
+## Conclusion
+
+[orthanc_sdk](https://crates.io/crates/orthanc_sdk) is still in early development,
+nonetheless I am excited to share it with the community.
+
+To get started with building an Orthanc plugin, please read through the
+[example](https://github.com/FNNDSC/orthanc-rs/blob/master/example_plugin/src/plugin.rs).
+Then:
+
+```shell
+# Install Rust
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+
+# Start Rust project
+cargo new --lib my_plugin
+cd my_plugin
+
+# Set output library type
+cat >> Cargo.toml << EOF
+[lib]
+crate-type = ["cdylib"]
+EOF
+
+# Add dependencies
+cargo add orthanc_sdk tracing http
+cargo add serde -F derive
+
+# Add code
+echo 'mod plugin;' > src/lib.rs
+wget -O src/plugin.rs https://github.com/FNNDSC/orthanc-rs/raw/refs/heads/master/example_plugin/src/plugin.rs
+
+# Build Orthanc plugin
+cargo build
+```
+
+Congratulations, you made a Rust Orthanc plugin :tada:
