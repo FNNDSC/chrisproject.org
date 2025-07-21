@@ -1,7 +1,8 @@
 @font-face {
   font-family: "DINNextW01-Light";
   src: url("//db.onlinewebfonts.com/t/9ae5e19516bc6428f1327ff3311b2617.eot");
-  src: url("//db.onlinewebfonts.com/t/9ae5e19516bc6428f1327ff3311b2617.eot?#iefix")
+  src:
+    url("//db.onlinewebfonts.com/t/9ae5e19516bc6428f1327ff3311b2617.eot?#iefix")
     format("embedded-opentype"),
     url("//db.onlinewebfonts.com/t/9ae5e19516bc6428f1327ff3311b2617.woff2")
     format("woff2"),

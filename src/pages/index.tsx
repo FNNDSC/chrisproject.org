@@ -1,14 +1,11 @@
 import Link from "@docusaurus/Link";
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import FnndscLogo from "@site/src/components/FnndscLogo";
 import HomepageFeatures from "@site/src/components/HomepageFeatures";
+import VideoJumbotron from "@site/src/components/VideoJumbotron";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
-import React from "react";
-import useAckee from "use-ackee";
-
-import FnndscLogo from "@site/src/components/FnndscLogo";
-import VideoJumbotron from "@site/src/components/VideoJumbotron";
 import Zoom from "react-medium-image-zoom";
+import useAckee from "use-ackee";
 import "react-medium-image-zoom/dist/styles.css";
 import "./fixme.css";
 import styles from "./index.module.css";
@@ -157,8 +154,6 @@ function FourthSection() {
 }
 
 export default function Home(): JSX.Element {
-  const { siteConfig } = useDocusaurusContext();
-
   useAckee(
     "/",
     {

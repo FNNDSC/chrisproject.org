@@ -14,32 +14,32 @@
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
     "check": "biome check src/",
-    "fix": "biome check --apply src/",
-    "fix:unsafe": "biome check --apply-unsafe src/",
+    "fix": "biome check --fix src/",
+    "fix:unsafe": "biome check --fix --unsafe src/",
     "fmt": "biome format --write src/",
     "prepare": "husky"
   },
   "dependencies": {
-    "@docusaurus/core": "3.7.0",
-    "@docusaurus/preset-classic": "3.7.0",
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
     "@mdx-js/react": "^3.1.0",
     "clsx": "^2.1.1",
     "plugin-image-zoom": "github:flexanalytics/plugin-image-zoom",
     "prism-react-renderer": "^2.4.1",
-    "react": "^19.0.0",
-    "react-data-table-component": "^7.6.2",
-    "react-dom": "^19.0.0",
+    "react": "^19.1.0",
+    "react-data-table-component": "^7.7.0",
+    "react-dom": "^19.1.0",
     "react-feather": "^2.0.10",
-    "react-medium-image-zoom": "^5.2.13",
-    "styled-components": "^6.1.14",
+    "react-medium-image-zoom": "^5.3.0",
+    "styled-components": "^6.1.19",
     "use-ackee": "^3.1.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
-    "@docusaurus/module-type-aliases": "3.7.0",
+    "@biomejs/biome": "2.1.2",
+    "@docusaurus/module-type-aliases": "3.8.1",
     "@tsconfig/docusaurus": "^2.0.3",
     "husky": "^9.1.7",
-    "typescript": "^5.7.3"
+    "typescript": "^5.8.3"
   },
   "browserslist": {
     "production": [
