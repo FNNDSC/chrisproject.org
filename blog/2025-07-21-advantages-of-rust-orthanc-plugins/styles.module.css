@@ -4,11 +4,22 @@
   align-items: center;
 }
 
-.plus::after {
-  content: '+';
-  font-size: 72px;
+.flex > * {
+  max-height: 200px;
 }
 
+.plus::after {
+  content: '+';
+  font-size: min(10cqw, 12.5cqh);
+}
+
+.wordLogo {
+  width: 60%;
+}
+
+.svgLogo {
+  width: 20%;
+}
 
 [data-theme='dark'] .svgLogo {
    filter: invert(80%);
