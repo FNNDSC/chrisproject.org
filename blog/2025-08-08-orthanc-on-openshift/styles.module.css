@@ -1,0 +1,18 @@
+.flex {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.plus::after {
+  content: '+';
+  font-size: min(6cqw, 6cqh);
+}
+
+.wideLogo {
+  width: 30%;
+}
+
+.chrisLogo {
+  width: 15%;
+}

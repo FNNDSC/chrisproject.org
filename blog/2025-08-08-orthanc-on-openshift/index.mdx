@@ -1,0 +1,194 @@
+---
+title: "Orthanc on OpenShift"
+authors: jennings
+tags: [OpenShift, Orthanc, NERC]
+---
+
+import ChrisLogo from '/static/img/logo/ChRISlogo-color.svg';
+import ORTHANC_LOGO from '/static/img/3rdparty/OrthancLogo-2016.png';
+import OpenshiftLogo from '/src/components/OpenshiftLogo';
+import styles from './styles.module.css';
+
+<div className={styles.flex}>
+  <ChrisLogo className={styles.chrisLogo} />
+  <div className={styles.plus} />
+  <img className={styles.wideLogo} src={ORTHANC_LOGO} alt="Orthanc Logo" />
+  <div className={styles.plus} />
+  <OpenshiftLogo className={styles.wideLogo} />
+</div>
+<br />
+
+Our research lab, the [FNNDSC](https://fnndsc.org), directs international
+collaborations on pediatric neuroimaging research. The data sharing platform
+for this research is [_ChRIS_](/). We have implemented a solution for sharing
+DICOM data between "peer" instances of _ChRIS_ using
+[Orthanc](https://orthanc.uclouvain.be/), an open-source DICOM server.
+Here we describe our deployment of Orthanc on
+[Red Hat OpenShift](https://developers.redhat.com/products/openshift/overview)
+and other open-source contributions we would like to share with the Orthanc
+community.
+
+<!--truncate-->
+
+## Summary
+
+Our team is proud to share three contributions with the Orthanc community:
+
+- A Rust SDK for Orthanc plugins, described in a previous blog:
+  [Rust for Orthanc Plugins](../2025-07-21-advantages-of-rust-orthanc-plugins/index.mdx).
+- A patient-oriented [custom UI](#patient-list-ui) for Orthanc.
+- A [Helm chart](#helm-chart) for deploying Orthanc on OpenShift.
+
+The latter two points are discussed below.
+
+## Patient List UI {#patient-list-ui}
+
+![Screenshot of "Patient List UI"](./screenshot_light.png#gh-light-mode-only)
+![Screenshot of "Patient List UI"](./screenshot_dark.png#gh-dark-mode-only)
+
+Our researchers had a simple ask:
+
+- See studies organized in "folders" by patient
+- Be able to compare images side-by-side in OHIF
+
+We have developed a custom user interface (UI) satisfying these two needs.
+It is GPL-licensed (same as Orthanc) hence free for anyone to use. As an
+Orthanc plugin developed against its C bindings, the process of installation
+is as simple as downloading the pre-compiled `.so` file and telling Orthanc
+to load it via its JSON configuration. For more details, see its README on the
+GitHub repository [FNNDSC/orthanc-patient-list](https://github.com/FNNDSC/orthanc-patient-list).
+
+### Packaging a Static Web App as an Orthanc Plugin
+
+Packaging a custom UI for Orthanc as an Orthanc plugin has numerous advantages:
+it is both easier for end-users to install, and integrated with Orthanc's web
+server features e.g. authentication.
+
+Creating an Orthanc plugin traditionally required you to setup a C++ and CMake
+toolchain. Now, it is much easier with the Rust `orthanc_sdk`. Version 0.2.0
+introduces a new feature which makes it possible to package a JavaScript web
+app bundle as a native Orthanc plugin with just (50 lines of boilerplate and)
+3 lines of code:
+
+```rust
+/// Import your bundle (e.g. output of `vite build` into the static binary
+const DIST: include_dir::Dir = include_dir!("$CARGO_MANIFEST_DIR/../dist");
+
+/// In `OrthancPluginInitialize`, register a REST callback
+orthanc_sdk::register_rest_no_lock(context, c"/my_webapp(/.*)?", Some(rest_callback));
+
+/// In the callback function, call `serve_static_file`
+orthanc_sdk::serve_static_file(context, output, url, request, &DIST, "/my_webapp")
+```
+
+More details with a complete example can be found on
+[docs.rs/orthanc_sdk](https://docs.rs/orthanc_sdk/0.2.0/orthanc_sdk/fn.serve_static_file.html).
+
+## Helm Chart for Orthanc {#helm-chart}
+
+We also maintain `fnndsc/charts` which provides a Helm chart for Orthanc.
+[Helm](https://helm.sh/) calls itself "the package manager for Kubernetes"—it
+makes it easy to share reusable templates for creating Kubernetes resources
+such as deployments.
+
+The Orthanc chart provided by `fnndsc/charts` will take advantage of
+OpenShift-specific features when available (it also works on plain Kubernetes).
+[Red Hat OpenShift](https://developers.redhat.com/products/openshift/overview)
+is best described as a distribution of Kubernetes bundled with a preset of
+common components. It is the commercial offering of [OKD](https://okd.io/)
+(i.e. OKD is free and open-source OpenShift). The chart for Orthanc provided
+by `fnndsc/charts` leverages the OpenShift container platform (OCP) to:
+
+- Automatically setup and configure an `ObjectBucketClaim` to provide
+  S3-compatible storage for Orthanc.
+  - Automatic configuration of client-side S3 object storage encryption is also
+    made easy.
+- Use the [CrunchyData Postgres Operator](https://github.com/CrunchyData/postgres-operator)
+  to provide a PostgreSQL cluster.
+  - The configuration is highly flexible. It is possible to specify multiple
+    replicas, high availability, automated backups, pooling with pgBouncer, etc.
+- Integration with either [Prometheus](https://github.com/prometheus-operator/prometheus-operator)
+  or [OpenTelemetry](https://opentelemetry.io/) operator to ingest Orthanc's
+  metrics to a cloud-native observability platform.
+- Optional integration with [oauth2-proxy](https://oauth2-proxy.github.io/oauth2-proxy/)
+  to secure Orthanc with modern single-sign-on platforms.
+- Configure Orthanc using YAML instead of JSON.
+  - Furthermore, the templates will auto-configure values intelligently. E.g.
+    if unspecified, the value for `ConcurrentJobs` will be set depending on the
+    value of `resources.requests.cpu` converted to number of cores.
+
+`fnndsc/charts` is not the first open-source Helm chart for Orthanc. The
+[Korthweb](https://digihunch.github.io/korthweb/) project predates
+`fnndsc/charts`. Our chart is simpler than Korthweb in some ways (without
+FluxCD, Istio, cert-manager) while also having the advantages described above.
+
+<details>
+<summary>Side note: about PostgreSQL on Kubernetes</summary>
+
+The most popular solution for deploying Postgres on Kubernetes is Bitnami
+Charts. Bitnami, which was bought by Broadcom, did a rug-pull on the
+open-source community and is converting Bitnami Charts to a proprietary service
+(see [bitnami/charts\#35164](https://github.com/bitnami/charts/issues/35164)).
+Indeed, Korthweb uses Bitnami for Postgres.
+
+`fnndsc/charts` leverages Crunchy PGO instead of Bitnami for its Orthanc chart.
+
+</details>
+
+### Adding Third-Party Plugins to Orthanc on OpenShift
+
+Adding plugins to Orthanc is trivial when running it locally, but simple things
+are trickier to do in Kubernetes and especially OpenShift. Fortunately,
+OpenShift provides a simple and powerful mechanism for making customizations to
+container images.
+
+We can tell OpenShift to build a custom Orthanc image:
+
+```yaml
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: my-customized-orthanc
+  annotations:
+    kubernetes.io/description: "Installs custom plugins into Orthanc."
+spec:
+  runPolicy: Serial
+  triggers:
+    - type: ConfigChange
+  source:
+    dockerfile: |
+      # syntax=docker/dockerfile:1.2
+      FROM jodogne/orthanc-plugins
+      ADD --chmod=644 https://github.com/FNNDSC/orthanc-patient-list/releases/download/release%2F20250805/libpatient_list_ui.so /usr/local/share/orthanc/custom_plugins/libFnndscPatientList.so
+  strategy:
+    dockerStrategy:
+      from:
+        kind: DockerImage
+        name: docker.io/jodogne/orthanc-plugins:1.12.8
+      pullSecret:
+        name: fnndscnercpull
+  output:
+    to:
+      kind: ImageStreamTag
+      name: orthanc:custom
+```
+
+OpenShift will build the inline `Dockerfile` and store it in a local container
+registry (usually `image-registry.openshift-image-registry.svc:5000`). Next,
+the Orthanc deployment needs to be annotated to tell OpenShift that Orthanc
+should be updated when the plugin-containing image is built:
+
+```shell
+oc set triggers deploy/orthanc --from-image=orthanc:custom -c orthanc
+```
+
+Not only is this an elegant way to load plugins into Orthanc, it also has the
+added benefit of improving container cold-start times because kubelet will be
+able to pull images from a local registry instead of Docker Hub.
+
+## Conclusion
+
+These work come together to form the basis of the cloud-native data sharing
+platform used by our research center's staff and their international
+collaborators. We hope that the broader Orthanc community will also find use
+in our open-source contributions.
