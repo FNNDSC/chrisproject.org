@@ -1,7 +1,7 @@
 ---
 title: "Design of chrisomatic v2"
 authors: jennings
-tags: [rust, software design]
+tags: [rust, software design, programming]
 ---
 
 `chrisomatic` is a tool for repeatable and declarative setup of the _ChRIS_ backend (_CUBE_)
