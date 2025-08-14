@@ -46,10 +46,12 @@ fn test_matcher() {
 ```
 
 [`std::sync::LazyLock`](https://doc.rust-lang.org/std/sync/struct.LazyLock.html)
-is the cop-out solution: "lazy" here means that data initialization is "lazy,"
-that is, data is initialized only when and immediately before it is first used.
-"Lazy" does _not technically_ mean that the developer is lazy, but sometimes it
-is the case that you reach for `LazyLock` out of developer laziness.
+does not actually belong on this list, but it must be mentioned because it is
+the most common solution to this problem. It is the cop-out solution: "lazy"
+here means that data initialization is "lazy," that is, data is initialized
+only when and immediately before it is first used. "Lazy" does _not technically_
+mean that the developer is lazy, but sometimes it is the case that you reach for
+`LazyLock` out of developer laziness.
 
 :::tip
 
@@ -59,12 +61,12 @@ was introduced to `std` in Rust version 1.80.
 
 :::
 
-`LazyLock` is most commonly suggested because it does not have any
-limitations (compared to `const fn` or codegen methods). However, it lacks
-compile-time guarantees about "correctness" in the sense that whether the code
-compiles makes no guarantee about whether it will work. It is possible to have
-code which compiles but will unconditionally panic. The only way to find out is
-by running the program (i.e. by having unit tests):
+`LazyLock` is both easy to use and has no limitations (in contrast to `const fn`
+and codegen methods discussed later). However, it lacks compile-time guarantees
+"correctness" in the sense that whether the code compiles makes no guarantee
+about whether it will work. It is possible to have code which compiles but will
+unconditionally panic. The only way to find out is by running the program (i.e.
+by having unit tests):
 
 ```rust
 use regex::Regex;
@@ -90,8 +92,8 @@ requested features. Sadly, these feature requests were closed as "won't fix."
 
 ### Runtime Cost of `LazyLock`
 
-`LazyLock` is used where you want compile-time data initialization, but it
-doesn't actually do that. It does initialization at runtime. Typically the
+You use `LazyLock` when you want compile-time initialization, but it does not
+actually do that. `LazyLock` does data initialization at runtime. Typically the
 initialization is a pure function, meaning use of `LazyLock` makes your program
 unnecessarily recompute the same data every time it starts. The cost of this is
 a few nanoseconds of CPU time and some extra KB of binary size. In other words,
