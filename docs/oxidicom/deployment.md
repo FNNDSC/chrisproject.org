@@ -5,14 +5,14 @@ sidebar_position: 2
 
 ## Environment Variables
 
-Only `OXIDICOM_AMQP_ADDRESS` and `OXIDICOM_FILES_ROOT` are required. Those configure how oxidicom connects to _CUBE_.
+Only `OXIDICOM_CELERY_BROKER` and `OXIDICOM_FILES_ROOT` are required. Those configure how oxidicom connects to _CUBE_.
 The other variables are either for optional features or performance tuning.
 
 | Name                             | Description                                                                           |
 |----------------------------------|---------------------------------------------------------------------------------------|
-| `OXIDICOM_AMQP_ADDRESS`          | (required) AMQP address of the RabbitMQ used by _CUBE_'s celery workers               |
+| `OXIDICOM_CELERY_BROKER`         | (required) Broker address for celery (starts with either `amqp://` or `redis://`)     |
 | `OXIDICOM_FILES_ROOT`            | (required) Path to where _CUBE_'s storage is mounted                                  |
-| `OXIDICOM_QUEUE_NAME`            | (optional) RabbitMQ queue name for the celery `register_pacs_series` task             |
+| `OXIDICOM_QUEUE_NAME`            | (optional) Celery queue name for the celery `register_pacs_series` task               |
 | `OXIDICOM_NATS_ADDRESS`          | (optional) NATS server where to send progress messages                                |
 | `OXIDICOM_PROGRESS_INTERVAL`     | Minimum delay between progress messages. Uses [humantime] syntax, e.g. `5ms`.         |
 | `OXIDICOM_SCP_AET`               | DICOM AE title (PACS pushing to `oxidicom` should be configured to push to this name) |

@@ -2,12 +2,6 @@
 title: Oxidicom
 ---
 
-:::tip
-
-This page is for an upcoming release of _ChRIS_. See https://github.com/FNNDSC/oxidicom/pull/3
-
-:::
-
 _oxidicom_ is a high-performance DICOM receiver for the
 [_ChRIS_ backend](https://github.com/FNNDSC/ChRIS_ultron_backEnd) (CUBE).
 
