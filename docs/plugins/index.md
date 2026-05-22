@@ -13,6 +13,8 @@ commandname [--optional-args values...] /path/to/inputs /path/to/outputs
 For a more technical description, consult the spec:
 https://github.com/FNNDSC/CHRIS_docs/blob/master/specs/ChRIS_Plugins.adoc
 
+To create a new plugin, start with [Create a ChRIS Plugin](./create.md).
+
 ## Types of Plugins
 
 There are three types of _ChRIS_ plugins:
