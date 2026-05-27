@@ -11,4 +11,7 @@ Use [GitHub Pages](https://pages.github.com/). I recommend using the [Docusaurus
 ## Hosting Web Apps
 
 The best place to host web apps is on the NERC OpenShift.
-To use HTTPS with custom domains on OpenShift, follow [this guide](nerc/https/index.md).
+
+<small>
+  There used to be some documentation here, but it fell out-of-date.
+</small>
