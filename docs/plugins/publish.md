@@ -1,4 +1,4 @@
-# Documentation Audit — ChRIS Plugin Development & Registration Workflow
+# ChRIS Plugin Development & Registration Workflow
 
 **Author:** `Sandip Samal`
 **Date:** 2026-06-12
@@ -8,7 +8,7 @@
 
 ## 1. Summary
 
-The ChRIS plugin ecosystem provides two paths for scaffolding Python plugins (`cookiecutter-chrisapp` and `python-chrisapp-template`) and five distinct mechanisms for registering plugins to a running CUBE instance, ranging from manual CLI tools to automated GitHub Actions. The primary consumers are scientific software developers building medical imaging analysis tools for the ChRIS/FNNDSC platform. Documentation is spread across multiple GitHub repos, the chrisproject.org site, and implicit institutional knowledge, with no single authoritative source covering the full develop-to-register lifecycle.
+The ChRIS plugin ecosystem provides two paths for scaffolding Python plugins (`cookiecutter-chrisapp` and `python-chrisapp-template`) and five distinct mechanisms for registering plugins to a running CUBE instance, ranging from manual CLI tools to automated GitHub Actions. The primary consumers are scientific software developers building medical imaging analysis tools for the ChRIS platform. Documentation is spread across multiple GitHub repos, the chrisproject.org site, and implicit institutional knowledge, with no single authoritative source covering the full develop-to-register lifecycle.
 
 ---
 
