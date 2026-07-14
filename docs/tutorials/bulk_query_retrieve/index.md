@@ -16,7 +16,7 @@ This manual walks through the complete end-to-end workflow for running a PACS bu
 ### Prerequisites
 
 - A valid single sign-on (LDAP) username and password for ChRIS.
-- The CSV templates `sample_query_spec.csv` (for Part A) and `sample_retrieve_spec.csv` (for Part B).
+- The CSV templates `bulk_query_spec.csv` (for Part A) and `bulk_retrieve_spec.csv` (for Part B).
 - Recipient email address(es) to receive pipeline notifications.
 
 ### Reference Endpoints & Compute Environment
@@ -65,7 +65,7 @@ Use this workflow to search the PACS for studies matching a set of criteria (e.g
 ### Step 4. Upload the query CSV template
 
 1. On the data-selection screen, choose **Upload New Data** (or **Fetch Data from ChRIS** if the file is already registered).
-2. Upload the `sample_query_spec.csv` template, filled in with the desired `Search_PatientID`, `Search_StudyDate`, and any `Search_<tagName>` columns.
+2. Upload the `bulk_query_spec.csv` template, filled in with the desired `Search_PatientID`, `Search_StudyDate`, and any `Search_<tagName>` columns.
 3. Finish the wizard to create the analysis (feed).
 
 ![Data selection screen](images/fig-a4-upload-data.jpg)
@@ -139,7 +139,7 @@ Use this workflow to retrieve (and optionally anonymize) the DICOM series identi
 
 ### Step 2. Prepare the retrieve CSV
 
-Before uploading, edit the downloaded CSV so it matches `sample_retrieve_spec.csv`:
+Before uploading, edit the downloaded CSV so it matches `bulk_retrieve_spec.csv`:
 
 - Rename the identifying columns to `Search_<column_name>` (e.g. `Search_AccessionNumber`).
 - **Folder name** — the name of the output folder created for each record/row.
@@ -147,7 +147,7 @@ Before uploading, edit the downloaded CSV so it matches `sample_retrieve_spec.cs
 - **status** — set any character in this column to skip that row entirely.
 - Leave `Dicom anonymized path` / `Nifti path` blank if you do not want anonymized DICOMs or NIfTI files saved.
 
-**sample_retrieve_spec.csv columns**
+**bulk_retrieve_spec.csv columns**
 
 | Column                           | Purpose                                                                             |
 |----------------------------------|-------------------------------------------------------------------------------------|
@@ -177,13 +177,13 @@ Before uploading, edit the downloaded CSV so it matches `sample_retrieve_spec.cs
 
 ### Step 4. Add the pl-dypxflow child node
 
-1. Open the new analysis and right-click the root (pl-dircop) node.
+1. Open the new analysis and right-click the root (pl-dircopy) node.
 2. Choose **+ Add a Child Node** from the context menu.
 3. Search for and select the plugin **pl-dypxflow**.
 
 ![Add a Child Node context menu](images/fig-a5-add-child-menu.jpg)
 
-*Figure B4 — Add a Child Node context menu on the pl-dircop root node (reused from Part A)*
+*Figure B4 — Add a Child Node context menu on the pl-dircopy root node (reused from Part A)*
 
 ### Step 5. Configure the pl-dypxflow node
 
@@ -195,7 +195,6 @@ Before uploading, edit the downloaded CSV so it matches `sample_retrieve_spec.cs
 --pattern '**/*.csv' --CUBEurl http://ekanite.tch.harvard.edu:32223/api/v1/
 --PFDCMurl http://chris.tch.harvard.edu:3224/api/v1/ --PACSname PACSDCM
 --recipients example@abc.com
---SMTPServer mailsmtp4.childrenshospital.org
 ```
 
 4. Click **Validate**, then **Add Node**.
@@ -226,7 +225,7 @@ Once complete, the feed graph shows the full pipeline: the root node, the pl-dya
 
 ## Appendix: CSV Templates
 
-### sample_query_spec.csv
+### bulk_query_spec.csv
 
 Used as the input for Part A. Each row specifies one search; add as many `Search_<tagName>` columns as needed.
 
@@ -234,25 +233,25 @@ Used as the input for Part A. Each row specifies one search; add as many `Search
 |---|---|---|
 | 1234567 | 19000101 | \<tagValue\> |
 
-### sample_retrieve_spec.csv
+### bulk_retrieve_spec.csv
 
 Used as the input for Part B, produced by editing the Part A query results. It contains the following columns:
 
-| Column |
-|---|
-| `PatientID` |
-| `PatientName` |
-| `PatientBirthDate` |
-| `Modality` |
-| `StudyDate` |
-| `Search_AccessionNumber` |
-| `SeriesDescription` |
+| Column                           |
+|----------------------------------|
+| `PatientID`                      |
+| `PatientName`                    |
+| `PatientBirthDate`               |
+| `Modality`                       |
+| `StudyDate`                      |
+| `Search_AccessionNumber`         |
+| `Search_SeriesDescription`       |
 | `NumberOfSeriesRelatedInstances` |
-| `Dicom path` |
-| `Dicom anonymized path` |
-| `Nifti path` |
-| `Folder name` |
-| `status` |
+| `Dicom path`                     |
+| `Dicom anonymized path`          |
+| `Nifti path`                     |
+| `Folder name`                    |
+| `status`                         |
 
 > See the full column-by-column description in [Part B, Step 2 — Prepare the retrieve CSV](#step-2-prepare-the-retrieve-csv).
 
@@ -275,5 +274,4 @@ Used as the input for Part B, produced by editing the Part A query results. It c
 --pattern '**/*.csv' --CUBEurl http://ekanite.tch.harvard.edu:32223/api/v1/
 --PFDCMurl http://chris.tch.harvard.edu:3224/api/v1/ --PACSname PACSDCM
 --recipients example@abc.com
---SMTPServer mailsmtp4.childrenshospital.org
 ```
