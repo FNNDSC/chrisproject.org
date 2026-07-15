@@ -1,0 +1,136 @@
+---
+title: Running Infant FreeSurfer on ChRIS
+---
+
+# Infant FreeSurfer on _ChRIS_
+
+[Infant FreeSurfer](https://surfer.nmr.mgh.harvard.edu/fswiki/infantFS) is a
+modified FreeSurfer pipeline for infant brains spanning the 0&ndash;2 year age range.
+
+This article is a complete walkthrough of how to run Infant FreeSurfer in _ChRIS_.
+
+## 1. Upload Data in a Feed
+
+After logging in, you can upload data to _ChRIS_ by creating a [feed](/docs/glossary#feed).
+We need to create one feed per subject.
+
+Find the "New and Existing Analysis" page in the sidebar.
+
+![alt text](01_new_and_existing_analysis.png)
+
+Click "Create Analysis" and provide a name for your feed.
+
+![alt text](02_feed_wizard_a.png)
+
+Click "Next", and choose the right-most option "Upload New Data" to select files
+to upload from your local computer. In this example, we have selected a file
+called "sub-01_T1w.nii.gz".
+
+:::tip
+
+`infant_recon_all` typically requires the input file to be named `mprage.nii.gz`.
+Don't worry about this, the wrapper script of
+[pl-infantfs](https://github.com/FNNDSC/pl-infantfs) takes care of finding
+your input file and passing it to `infant_recon_all`.
+
+:::
+
+![alt text](03_feed_wizard_b.png)
+
+Click "Next." Skip the screen where it asks you to choose a pipeline.
+
+![alt text](04_feed_wizard_c.png)
+
+The final page of the wizard asks you to review the details. Click "Create Analysis."
+
+![alt text](05_feed_wizard_d.png)
+
+A few seconds after clicking "Create Analysis", the wizard will automatically close
+and a new row will appear in the feed table. Click the name of your newly created feed.
+
+![alt text](06_newly_created_feed_row.png)
+
+## 2. Run the `pl-infantfs` plugin
+
+You are now looking at the feed view. There should be one circle containing
+the input data uploaded during the previous step. **Right click** on the
+circle and choose "Add a Child Node".
+
+![alt text](07_feed_view_right_click.png)
+
+Search for the plugin "pl-infantfs".
+
+![alt text](08_plugin_wizard_a.png)
+
+Click "Next." Here, you will need to fill out the parameters for Infant FreeSurfer.
+
+![alt text](09_plugin_wizard_b.png)
+
+### Infant FreeSurfer Parameters
+
+| Parameter | Description                                                                             |
+|-----------|-----------------------------------------------------------------------------------------|
+| `--s`     | Subject name. Provide an arbitrary text value, it will affect the name of output files. |
+| `--age`   | Age of the subject in months.                                                           |
+
+For more options, see https://surfer.nmr.mgh.harvard.edu/fswiki/infantFS
+
+### Checking the progress
+
+import FaTerminal from "./fa-terminal-solid-full.svg";
+
+export const TerminalIcon = () => (
+  <span
+    style={{
+      backgroundColor: "#37373a",
+      borderRadius: "24px",
+      padding: "6px",
+      margin: "0 3px",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}>
+    <FaTerminal style={{ width: "18px", height: "18px" }} />
+  </span>
+);
+
+Click the <TerminalIcon /> icon found in the top bar to see the terminal logs.
+
+![Screenshot of terminal output pane](10_terminal_output.png)
+
+## 3. Downloading output files
+
+import FaDownload from "./fa-download-solid-full.svg";
+
+export const DownloadButton = () => (
+  <span
+    style={{
+      backgroundColor: "#0c0e10",
+      border: "1px solid #4f5255",
+      borderRadius: "4px",
+      padding: "6px 14px",
+      margin: "0 3px",
+      display: "inline-flex",
+      alignItems: "center",
+      justifyContent: "center"
+    }}>
+    <FaDownload style={{ width: "16px", height: "16px" }} />
+  </span>
+);
+
+Output files will appear in the bottom panel when the pipeline is done running.
+
+To download files, select a file by clicking the <input type="checkbox" checked /> checkbox
+to the left, and then click the <DownloadButton /> button.
+
+![Screenshot of output files](11_output_files.png)
+
+:::tip
+
+FNNDSC internal users can push files directly from _ChRIS_ to `/neuro/labs/grantlab/research`
+by running `pl-neurofiles-push`.
+
+![Example of running `pl-neurofiles-push`](12_neurofiles_push.png)
+
+:::
+
