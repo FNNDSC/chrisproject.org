@@ -14,13 +14,29 @@ This article is a complete walkthrough of how to run Infant FreeSurfer in _ChRIS
 After logging in, you can upload data to _ChRIS_ by creating a [feed](/docs/glossary#feed).
 We need to create one feed per subject.
 
-Find the "New and Existing Analysis" page in the sidebar.
+import FaPlusIcon from "./fa-plus-solid-full.svg";
 
-![alt text](01_new_and_existing_analysis.png)
+export const NewFeedButton = () => (
+  <button
+    style={{
+      padding: "6px 12px",
+      display: "inline-flex",
+      flexDirection: "row",
+      border: "none",
+      borderRadius: "2px",
+      background: "#1253b0",
+      gap: "4px"
+    }}
+  >
+    <FaPlusIcon style={{ height: "14px", width: "14px" }} />
+    New
+  </button>
+)
 
-Click "Create Analysis" and provide a name for your feed.
+Find the "New and Existing Analysis" page in the sidebar. On this page, click
+<NewFeedButton />, and click "File Upload".
 
-![alt text](02_feed_wizard_a.png)
+![Screenshot of "New and Exisitng Analysis"](01_new_and_existing_analysis.png)
 
 Click "Next", and choose the right-most option "Upload New Data" to select files
 to upload from your local computer. In this example, we have selected a file
@@ -35,20 +51,36 @@ your input file and passing it to `infant_recon_all`.
 
 :::
 
-![alt text](03_feed_wizard_b.png)
+After choosing a file, it will ask you to name your feed. Provide a description
+of your task here.
 
-Click "Next." Skip the screen where it asks you to choose a pipeline.
+![Screenshot of setting a feed name](02_set_feed_name.png)
 
-![alt text](04_feed_wizard_c.png)
+export const CreateButton = () => (
+  <button
+    style={{
+      padding: "6px 18px",
+      border: "none",
+      borderRadius: "2px",
+      background: "#1253b0",
+    }}
+  >
+    Create
+  </button>
+)
 
-The final page of the wizard asks you to review the details. Click "Create Analysis."
+Click <CreateButton />. You will then see the notification drawer open.
 
-![alt text](05_feed_wizard_d.png)
+![Screenshot of the notification drawer starting](03_notification_drawer_start.png)
 
-A few seconds after clicking "Create Analysis", the wizard will automatically close
-and a new row will appear in the feed table. Click the name of your newly created feed.
+Wait 1&ndash;10 seconds for the file upload to finish.
 
-![alt text](06_newly_created_feed_row.png)
+![Screenshot of the notification drawer done](./04_notification_drawer_done.png)
+
+Behind the notification drawer, a new row will appear in the table. At this point
+you can close the notification drawer. Click the name of the feed to open it.
+
+![Screenshot of the newly created feed row](./05_newly_created_feed_row.png)
 
 ## 2. Run the `pl-infantfs` plugin
 
@@ -56,15 +88,15 @@ You are now looking at the feed view. There should be one circle containing
 the input data uploaded during the previous step. **Right click** on the
 circle and choose "Add a Child Node".
 
-![alt text](07_feed_view_right_click.png)
+![Screenshot of plugin instance context menu](06_feed_view_right_click.png)
 
 Search for the plugin "pl-infantfs".
 
-![alt text](08_plugin_wizard_a.png)
+![Screenshot of searching for a plugin to run](07_plugin_wizard_a.png)
 
 Click "Next." Here, you will need to fill out the parameters for Infant FreeSurfer.
 
-![alt text](09_plugin_wizard_b.png)
+![Screenshot of setting parameters in the plugin instance wizard](08_plugin_wizard_b.png)
 
 ### Infant FreeSurfer Parameters
 
@@ -96,7 +128,7 @@ export const TerminalIcon = () => (
 
 Click the <TerminalIcon /> icon found in the top bar to see the terminal logs.
 
-![Screenshot of terminal output pane](10_terminal_output.png)
+![Screenshot of terminal output pane](09_terminal_output.png)
 
 ## 3. Downloading output files
 
@@ -123,14 +155,14 @@ Output files will appear in the bottom panel when the pipeline is done running.
 To download files, select a file by clicking the <input type="checkbox" checked /> checkbox
 to the left, and then click the <DownloadButton /> button.
 
-![Screenshot of output files](11_output_files.png)
+![Screenshot of output files](10_output_files.png)
 
 :::tip
 
 FNNDSC internal users can push files directly from _ChRIS_ to `/neuro/labs/grantlab/research`
 by running `pl-neurofiles-push`.
 
-![Example of running `pl-neurofiles-push`](12_neurofiles_push.png)
+![Example of running `pl-neurofiles-push`](11_neurofiles_push.png)
 
 :::
 
