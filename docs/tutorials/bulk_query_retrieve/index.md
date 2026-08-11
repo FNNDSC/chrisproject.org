@@ -16,7 +16,7 @@ This manual walks through the complete end-to-end workflow for running a PACS bu
 ### Prerequisites
 
 - A valid single sign-on (LDAP) username and password for ChRIS.
-- **PACS access**: your ChRIS account must belong to the `pacs_users` group. If you don't already have this, request it by emailing **Newborn_FNNDSCdev-dl** and asking to be added to `pacs_users` — without this, PACS queries and retrievals will fail.
+- **PACS access**: your ChRIS account must belong to the `pacs_users` group. If you don't already have this, request it by emailing [**Newborn_FNNDSCdev-dl**](mailto:Newborn_FNNDSCdev-dl@childrens.harvard.edu) and asking to be added to `pacs_users` — without this, PACS queries and retrievals will fail.
 - The CSV templates `bulk_query_spec.csv` (for Part A) and `bulk_retrieve_spec.csv` (for Part B).
 - Recipient email address(es) to receive pipeline notifications.
 
