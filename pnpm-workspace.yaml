@@ -1,0 +1,6 @@
+allowBuilds:
+  core-js: false
+  core-js-pure: false
+
+# See https://cooldowns.dev/#pnpm-javascriptnodejs
+minimumReleaseAge: 4320 # 3 days

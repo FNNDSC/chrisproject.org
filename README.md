@@ -64,14 +64,11 @@ This table guides you on where to put your documentation.
 | `docs/internal/`   | Internal Documentation | Notes and low quality documentation which are relevant only to the _ChRIS_ core development group. |
 | `blog/`            | Blog                   | High quality write-ups about milestones or technical challenges and solutions.                     |
 | `meeting_minutes/` | Meeting Minutes        | Low quality notes about meetings and progress updates.                                             |
-| `ChRISalis/`       | ChRISalis              | Blog for the _ChRIS_ learning seminar. Contains links, slides, and meeting recordings.             |
 
 ### Static Assets
 
 Small images and other media can be uploaded to Git in the `static/` directory.
-Optionally, large assets such as PDFs, PPTX, ... can be hosted on
-[NERC OpenStack](stack.nerc.mghpcc.org/) Swift Object Storage.
-
+Optionally, large assets such as PDFs, PPTX, ... can be hosted on NERC OpenStack Swift.
 The instructions on how to do so are found [here](./docs/internal/nerc/swift.md).
 If you don't have an account, or are too lazy to figure this out,
-[message Jennings](https://matrix.to/#/@jennydaman:fedora.im) and he will handle it for you.
+[message Jennings](https://fnndscacg.slack.com/team/U0BA268UZ1S) and he will handle it for you.
