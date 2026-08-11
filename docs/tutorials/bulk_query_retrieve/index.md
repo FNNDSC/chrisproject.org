@@ -16,6 +16,7 @@ This manual walks through the complete end-to-end workflow for running a PACS bu
 ### Prerequisites
 
 - A valid single sign-on (LDAP) username and password for ChRIS.
+- **PACS access**: your ChRIS account must belong to the `pacs_users` group. If you don't already have this, request it by emailing **Newborn_FNNDSCdev-dl** and asking to be added to `pacs_users` — without this, PACS queries and retrievals will fail.
 - The CSV templates `bulk_query_spec.csv` (for Part A) and `bulk_retrieve_spec.csv` (for Part B).
 - Recipient email address(es) to receive pipeline notifications.
 
@@ -66,6 +67,38 @@ Use this workflow to search the PACS for studies matching a set of criteria (e.g
 
 1. On the data-selection screen, choose **Upload New Data** (or **Fetch Data from ChRIS** if the file is already registered).
 2. Upload the `bulk_query_spec.csv` template, filled in with the desired `Search_PatientID`, `Search_StudyDate`, and any `Search_<tagName>` columns.
+
+   > **Search_\<tagName\> columns:** `tagName` can be any DICOM header tag you want to filter on — the column header must be prefixed with `Search_`. Common examples:
+   > - `Search_Modality`
+   > - `Search_StudyDescription`
+   > - `Search_SeriesDescription`
+   > - `Search_PatientBirthDate`
+   > - `Search_StudyDate`
+   > - `Search_AccessionNumber`
+   >
+   > **Date-type tags** (e.g. `Search_StudyDate`, `Search_PatientBirthDate`) must be entered in **YYYYMMDD** format.
+   >
+   > **Regex-capable tags:** `Search_StudyDescription` and `Search_SeriesDescription` support regex-style partial matching. Wrap the pattern in asterisks, e.g. `*pattern*`, to match any description containing that pattern. Other fields (IDs, dates, Modality, Accession Number) should be entered as exact values.
+   >
+   > **Example 1 — match on Patient ID, Study Date, and Modality:**
+   >
+   > | Search_PatientID | Search_StudyDate | Search_Modality |
+   > |---|---|---|
+   > | 021345 | 19001010 | MR |
+   >
+   > **Example 2 — match on Accession Number, Modality, and a partial Series Description:**
+   >
+   > | Search_AccessionNumber | Search_Modality | Search_SeriesDescription |
+   > |---|---|--------------------------|
+   > | 1544889565 | MR | \*sag t1\*               |
+   >
+   > **Example 3 — match across multiple studies for the same patient by date and a partial Study Description** (one row per study; leave a column blank to skip filtering on that tag for a given row):
+   >
+   > | Search_PatientID | Search_StudyDate | Search_Modality | Search_StudyDescription |
+   > |---|---|---|-------------------------|
+   > | 021345 | 20100304 | CT | \*chest\*               |
+   > | 021345 | 20120917 | CT | \*chest\*               |
+
 3. Finish the wizard to create the analysis (feed).
 
 ![Data selection screen](images/fig-a4-upload-data.jpg)
@@ -147,6 +180,8 @@ Before uploading, edit the downloaded CSV so it matches `bulk_retrieve_spec.csv`
 - **status** — set any character in this column to skip that row entirely.
 - Leave `Dicom anonymized path` / `Nifti path` blank if you do not want anonymized DICOMs or NIfTI files saved.
 
+> ⚠️ **Important — destination paths must be world-writable.** Every destination path you specify (`Dicom path`, `Dicom anonymized path`, `Nifti path`) must have world-writable permissions on the `/neuro` filesystem before you run the pipeline. ChRIS pushes output data to these paths as part of the pipeline run, and if the target directory isn't writable, the push will silently fail and **no data will be delivered** for that row. Confirm permissions (or ask your system administrator to set them) on each destination path ahead of time.
+
 **bulk_retrieve_spec.csv columns**
 
 | Column                           | Purpose                                                                             |
@@ -159,9 +194,9 @@ Before uploading, edit the downloaded CSV so it matches `bulk_retrieve_spec.csv`
 | `Search_AccessionNumber`         | Accession number used to locate the study on the PACS                               |
 | `Search_SeriesDescription`       | Description of the series used to locate the sequence in the study                  |
 | `NumberOfSeriesRelatedInstances` | Number of instances in the series                                                   |
-| `Dicom path`                     | Destination path under `/neuro` for the retrieved DICOMs                            |
-| `Dicom anonymized path`          | Destination path under `/neuro` for anonymized DICOMs (leave blank to skip)         |
-| `Nifti path`                     | Destination path under `/neuro` for the converted NIfTI files (leave blank to skip) |
+| `Dicom path`                     | Destination path under `/neuro` for the retrieved DICOMs — **must be world-writable** |
+| `Dicom anonymized path`          | Destination path under `/neuro` for anonymized DICOMs (leave blank to skip) — **must be world-writable if used** |
+| `Nifti path`                     | Destination path under `/neuro` for the converted NIfTI files (leave blank to skip) — **must be world-writable if used** |
 | `Folder name`                    | Name of the output folder created for this record/row                               |
 | `status`                         | Set any character to skip this row                                                  |
 
