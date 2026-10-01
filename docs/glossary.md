@@ -5,6 +5,11 @@ sidebar_position: 98
 
 # Glossary
 
+### CUBE {#CUBE}
+
+Acronym for "_ChRIS_ ultron backEnd" or "_ChRIS_ underlying backend," it refers
+to the _ChRIS_ backend or its REST API.
+
 ### Feed
 
 A _feed_ is usually synonymous with "an analysis." Think of feeds as to how you
