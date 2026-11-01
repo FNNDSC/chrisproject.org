@@ -1,0 +1,12 @@
+# The ChRIS store at cube.chrisproject.org, as code (mise docs/stratus.adoc, D16).
+#
+# Played in a stratus session with the tasks tier: play infra/store.mise
+# Replaying it compares and builds only what changed; every build and the DNS
+# change ask first. The admin password is the FNNDSC organization secret
+# CHRISPROJECT_PASSWORD, kept in the file below on the host that plays this.
+
+net new chrisproject-services --cidr 10.20.0.0/16
+net build chrisproject-services
+vm new store --net chrisproject-services --open 80,443 --vcpu 2 --memory 8 --disk 50 --data 50 --data-backup daily --os ubuntu-26.04
+vm build store
+chris deploy store --profile minimal --compute NERC --host cube.chrisproject.org --admin-password-file ${HOME}/.config/chrisproject/store/chris-password
