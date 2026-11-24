@@ -258,6 +258,48 @@ Once complete, the feed graph shows the full pipeline: the root node, the pl-dya
 
 ---
 
+## Known Errors & FAQ
+
+### "Connection timed out" while scheduling the pipeline
+
+This is the most common error. It is usually transient and is not caused by your CSV or configuration.
+
+**Fix:** re-run the analysis. If it keeps timing out after several attempts, contact support rather than retrying indefinitely.
+
+### The CSV fails to upload or pandas cannot read it
+
+This is almost always a typo or stray character in the input CSV. Common causes:
+
+- Unusual or non-standard characters in a cell (e.g. `E^`), including smart quotes or characters pasted in from Word, PDFs, or emails.
+- An unquoted field that contains a comma, or inconsistent delimiters.
+- Hidden characters left over from copy-pasting between spreadsheets.
+
+**Fix:** open the CSV in a plain text editor (not just Excel) to find the offending characters, remove or replace them, save the file as UTF-8, and upload it again.
+
+### Permission error, or no files appear at the output path
+
+First-time users often forget to make their output folders writable. The `Dicom path`, `Dicom anonymized path`, and `Nifti path` destinations must all be **world-writable** before the pipeline runs, or ChRIS cannot push data there.
+
+**Fix:** set the destination folder(s) under `/neuro` to world-writable, then re-run the retrieve. See the warning in [Part B, Step 2](#step-2-prepare-the-retrieve-csv).
+
+### I cannot query or retrieve from the PACS
+
+Your ChRIS account is probably not in the `pacs_users` group.
+
+**Fix:** email [**Newborn_FNNDSCdev-dl**](mailto:Newborn_FNNDSCdev-dl@childrens.harvard.edu) and ask to be added to `pacs_users`.
+
+### My query returned no matches
+
+- Date tags (`Search_StudyDate`, `Search_PatientBirthDate`, etc.) must be in `YYYYMMDD` format.
+- `Search_StudyDescription` and `Search_SeriesDescription` need asterisks for partial matches, e.g. `*sag t1*`. Other tags (IDs, dates, Modality, Accession Number) must match exactly.
+- Column headers must be spelled exactly `Search_<tagName>`, using a valid DICOM tag name.
+
+### Some rows in my retrieve CSV did not run
+
+Check the `status` column. Any character in that column makes the pipeline skip the row. Clear the cell to include the row again.
+
+---
+
 ## Appendix: CSV Templates
 
 ### bulk_query_spec.csv
